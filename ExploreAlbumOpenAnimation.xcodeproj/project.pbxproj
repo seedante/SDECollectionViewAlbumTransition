@@ -8,20 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		FDBB4B4F1B5BDFBE00B6D674 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B4E1B5BDFBE00B6D674 /* AppDelegate.swift */; };
-		FDBB4B511B5BDFBE00B6D674 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B501B5BDFBE00B6D674 /* ViewController.swift */; };
-		FDBB4B541B5BDFBE00B6D674 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDBB4B521B5BDFBE00B6D674 /* Main.storyboard */; };
 		FDBB4B561B5BDFBE00B6D674 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDBB4B551B5BDFBE00B6D674 /* Assets.xcassets */; };
 		FDBB4B591B5BDFBE00B6D674 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDBB4B571B5BDFBE00B6D674 /* LaunchScreen.storyboard */; };
+		FDBB4B681B5BE02400B6D674 /* SDEAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B601B5BE02400B6D674 /* SDEAlbumViewController.swift */; };
+		FDBB4B691B5BE02400B6D674 /* SDEGalleriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B611B5BE02400B6D674 /* SDEGalleriesViewController.swift */; };
+		FDBB4B6A1B5BE02400B6D674 /* SDETransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B621B5BE02400B6D674 /* SDETransitionAnimator.swift */; };
+		FDBB4B6B1B5BE02400B6D674 /* SDEFetchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B631B5BE02400B6D674 /* SDEFetchResult.swift */; };
+		FDBB4B6C1B5BE02400B6D674 /* SDEAdaptiveAssetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B641B5BE02400B6D674 /* SDEAdaptiveAssetCell.swift */; };
+		FDBB4B6D1B5BE02400B6D674 /* TimeIntervalOutputExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B651B5BE02400B6D674 /* TimeIntervalOutputExtension.swift */; };
+		FDBB4B6E1B5BE02400B6D674 /* video_call.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBB4B661B5BE02400B6D674 /* video_call.png */; };
+		FDBB4B6F1B5BE02400B6D674 /* video_call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBB4B671B5BE02400B6D674 /* video_call@2x.png */; };
+		FDBB4B711B5BE08800B6D674 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDBB4B701B5BE08800B6D674 /* Main.storyboard */; };
+		FDBB4B731B5BE20800B6D674 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBB4B721B5BE20800B6D674 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FDBB4B4B1B5BDFBE00B6D674 /* ExploreAlbumOpenAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExploreAlbumOpenAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDBB4B4E1B5BDFBE00B6D674 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FDBB4B501B5BDFBE00B6D674 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FDBB4B531B5BDFBE00B6D674 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FDBB4B551B5BDFBE00B6D674 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FDBB4B581B5BDFBE00B6D674 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FDBB4B5A1B5BDFBE00B6D674 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDBB4B601B5BE02400B6D674 /* SDEAlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDEAlbumViewController.swift; sourceTree = "<group>"; };
+		FDBB4B611B5BE02400B6D674 /* SDEGalleriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDEGalleriesViewController.swift; sourceTree = "<group>"; };
+		FDBB4B621B5BE02400B6D674 /* SDETransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDETransitionAnimator.swift; sourceTree = "<group>"; };
+		FDBB4B631B5BE02400B6D674 /* SDEFetchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDEFetchResult.swift; sourceTree = "<group>"; };
+		FDBB4B641B5BE02400B6D674 /* SDEAdaptiveAssetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDEAdaptiveAssetCell.swift; sourceTree = "<group>"; };
+		FDBB4B651B5BE02400B6D674 /* TimeIntervalOutputExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeIntervalOutputExtension.swift; sourceTree = "<group>"; };
+		FDBB4B661B5BE02400B6D674 /* video_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video_call.png; sourceTree = "<group>"; };
+		FDBB4B671B5BE02400B6D674 /* video_call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_call@2x.png"; sourceTree = "<group>"; };
+		FDBB4B701B5BE08800B6D674 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		FDBB4B721B5BE20800B6D674 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,10 +71,18 @@
 			isa = PBXGroup;
 			children = (
 				FDBB4B4E1B5BDFBE00B6D674 /* AppDelegate.swift */,
-				FDBB4B501B5BDFBE00B6D674 /* ViewController.swift */,
-				FDBB4B521B5BDFBE00B6D674 /* Main.storyboard */,
+				FDBB4B601B5BE02400B6D674 /* SDEAlbumViewController.swift */,
+				FDBB4B611B5BE02400B6D674 /* SDEGalleriesViewController.swift */,
+				FDBB4B621B5BE02400B6D674 /* SDETransitionAnimator.swift */,
+				FDBB4B631B5BE02400B6D674 /* SDEFetchResult.swift */,
+				FDBB4B641B5BE02400B6D674 /* SDEAdaptiveAssetCell.swift */,
+				FDBB4B651B5BE02400B6D674 /* TimeIntervalOutputExtension.swift */,
+				FDBB4B661B5BE02400B6D674 /* video_call.png */,
+				FDBB4B671B5BE02400B6D674 /* video_call@2x.png */,
 				FDBB4B551B5BDFBE00B6D674 /* Assets.xcassets */,
+				FDBB4B721B5BE20800B6D674 /* Default-568h@2x.png */,
 				FDBB4B571B5BDFBE00B6D674 /* LaunchScreen.storyboard */,
+				FDBB4B701B5BE08800B6D674 /* Main.storyboard */,
 				FDBB4B5A1B5BDFBE00B6D674 /* Info.plist */,
 			);
 			path = ExploreAlbumOpenAnimation;
@@ -95,6 +119,7 @@
 				TargetAttributes = {
 					FDBB4B4A1B5BDFBE00B6D674 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 6Z8XUV9H6J;
 					};
 				};
 			};
@@ -122,8 +147,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDBB4B591B5BDFBE00B6D674 /* LaunchScreen.storyboard in Resources */,
+				FDBB4B711B5BE08800B6D674 /* Main.storyboard in Resources */,
 				FDBB4B561B5BDFBE00B6D674 /* Assets.xcassets in Resources */,
-				FDBB4B541B5BDFBE00B6D674 /* Main.storyboard in Resources */,
+				FDBB4B6F1B5BE02400B6D674 /* video_call@2x.png in Resources */,
+				FDBB4B6E1B5BE02400B6D674 /* video_call.png in Resources */,
+				FDBB4B731B5BE20800B6D674 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,22 +162,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDBB4B511B5BDFBE00B6D674 /* ViewController.swift in Sources */,
+				FDBB4B6B1B5BE02400B6D674 /* SDEFetchResult.swift in Sources */,
+				FDBB4B691B5BE02400B6D674 /* SDEGalleriesViewController.swift in Sources */,
+				FDBB4B6D1B5BE02400B6D674 /* TimeIntervalOutputExtension.swift in Sources */,
+				FDBB4B6A1B5BE02400B6D674 /* SDETransitionAnimator.swift in Sources */,
+				FDBB4B6C1B5BE02400B6D674 /* SDEAdaptiveAssetCell.swift in Sources */,
 				FDBB4B4F1B5BDFBE00B6D674 /* AppDelegate.swift in Sources */,
+				FDBB4B681B5BE02400B6D674 /* SDEAlbumViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FDBB4B521B5BDFBE00B6D674 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FDBB4B531B5BDFBE00B6D674 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		FDBB4B571B5BDFBE00B6D674 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -248,6 +273,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ExploreAlbumOpenAnimation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seedante.ExploreAlbumOpenAnimation;
@@ -259,6 +285,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ExploreAlbumOpenAnimation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seedante.ExploreAlbumOpenAnimation;

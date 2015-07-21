@@ -13,9 +13,9 @@ private let ImageIdentifier = "ImageCell"
 private let VideoIdentifier = "VideoCell"
 
 private let maskViewAnimationDuration = 0.4
-private let backgroundColorAnimationDuration = 0.3
-private let backgroundColorAnimationDelay = 0.2
-private let cellAnimationDurationOne = 0.4
+private let backgroundColorAnimationDuration = 0.5
+private let backgroundColorAnimationDelay = 0.1
+private let cellAnimationDurationOne = 0.35
 private let cellAnimationDurationTwo = 0.25
 
 enum AlbumOpenStyle: Int{
@@ -52,15 +52,11 @@ class SDEAlbumViewController: UICollectionViewController {
     override func viewDidLoad() {
         print("viewDidLoad")
         super.viewDidLoad()
-        //self.view.opaque = false
-        //self.view.backgroundColor = UIColor(white: 0.0, alpha: 0.0)
-        //self.collectionView?.opaque = false
-        //self.collectionView?.backgroundColor = UIColor(white: 0.0, alpha: 0.0)
-        //animationStyle = AlbumOpenStyle(rawValue: Int(2)) //arc4random_uniform(4)
+        //animationStyle = AlbumOpenStyle(rawValue: arc4random_uniform(4))
         
         maskImageView.contentMode = .ScaleAspectFill
         maskImageView.clipsToBounds = true
-        maskImageView.backgroundColor = UIColor.clearColor()
+        maskImageView.backgroundColor = UIColor.whiteColor()
         maskImageView.layer.borderColor = UIColor.whiteColor().CGColor
         maskImageView.layer.borderWidth = 10.0
         self.view.addSubview(maskImageView)
@@ -77,9 +73,9 @@ class SDEAlbumViewController: UICollectionViewController {
                             self.maskImageView.image = nil
                         }, completion: {
                             finish in
-                            self.maskImageView.removeFromSuperview()
+                            self.maskImageView.alpha = 0
                             UIView.animateWithDuration(backgroundColorAnimationDuration, delay: backgroundColorAnimationDelay, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-                                self.collectionView?.backgroundColor = UIColor.whiteColor()
+                                self.view.backgroundColor = UIColor.whiteColor()
                             }, completion: nil)
                         })
                     case .FlipUp:
@@ -93,15 +89,16 @@ class SDEAlbumViewController: UICollectionViewController {
                             self.maskImageView.layer.transform = flipUpTransition
                             }, completion: {
                                 finish in
-                                self.maskImageView.removeFromSuperview()
+                                
+                                self.maskImageView.alpha = 0
                                 UIView.animateWithDuration(backgroundColorAnimationDuration, delay: backgroundColorAnimationDelay, options: .BeginFromCurrentState , animations: {
-                                    self.collectionView?.backgroundColor = UIColor.whiteColor()
+                                    self.view.backgroundColor = UIColor.whiteColor()
                                     }, completion: nil)
                         })
 
                     case .FlyOut:
                         self.maskImageView.layer.anchorPoint = CGPointMake(0, 0.5)
-                        self.maskImageView.center = CGPointMake(self.imageViewOrigin!.x, self.imageViewOrigin!.y + 95)
+                        self.maskImageView.center = CGPointMake(self.imageViewOrigin!.x, self.imageViewOrigin!.y + 85)
                         var perspective = CATransform3DIdentity
                         perspective.m34 = -1.0 / 500.0
                         let flipRightTransition = CATransform3DRotate(perspective, CGFloat(-M_PI) * 3 / 4, 0.0, 1.0, 0.0)
@@ -112,14 +109,10 @@ class SDEAlbumViewController: UICollectionViewController {
                             }, completion: {
                                 finish in
                                 
-                                self.maskImageView.removeFromSuperview()
+                                self.maskImageView.alpha = 0
                                 UIView.animateWithDuration(backgroundColorAnimationDuration, delay: backgroundColorAnimationDelay, options: .BeginFromCurrentState , animations: {
-                                    self.collectionView?.backgroundColor = UIColor.whiteColor()
-                                    
-                                    }, completion: {
-                                        finish in
-                                        
-                                })
+                                    self.view.backgroundColor = UIColor.whiteColor()
+                                    }, completion: nil)
                         })
                         
                     case .QuickTransition:
@@ -129,9 +122,9 @@ class SDEAlbumViewController: UICollectionViewController {
                             }, completion: {
                                 finish in
                                 
-                                self.maskImageView.removeFromSuperview()
+                                self.maskImageView.alpha = 0
                                 UIView.animateWithDuration(backgroundColorAnimationDuration, delay: backgroundColorAnimationDelay, options: .BeginFromCurrentState , animations: {
-                                    self.collectionView?.backgroundColor = UIColor.whiteColor()
+                                    self.view.backgroundColor = UIColor.whiteColor()
                                     }, completion: nil)
                                 
                         })
@@ -154,6 +147,58 @@ class SDEAlbumViewController: UICollectionViewController {
         fliped = true
         print("viewDidAppear")
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.maskImageView.frame.size = CGSizeMake(170, 170)
+        self.maskImageView.center = CGPointMake(self.imageViewOrigin!.x, self.imageViewOrigin!.y + 85)
+        self.maskImageView.layer.anchorPoint = CGPointMake(0, 0.5)
+        var perspective = CATransform3DIdentity
+        perspective.m34 = -1.0 / 500.0
+        let flipBackTransition = CATransform3DRotate(perspective, CGFloat(-M_PI) * 3 / 4, 0.0, 1.0, 0.0)
+        self.maskImageView.layer.transform = flipBackTransition
+        UIView.animateWithDuration(0.1, animations: {
+            self.maskImageView.alpha = 1.0
+            }, completion: {
+                finish in
+                UIView.animateWithDuration(0.4, delay: 0.1, options: .BeginFromCurrentState, animations: {
+                    self.maskImageView.layer.transform = CATransform3DIdentity
+                    }, completion: nil)
+        })
+        
+
+        if self.collectionView?.numberOfItemsInSection(0) > 0{
+            for cell in self.collectionView!.visibleCells(){
+                let initialCenter = cell.center
+                let middleCenter = CGPointMake(cellReferencePoint!.x + 75, cellReferencePoint!.y + 75)
+                let finalCenter = CGPointMake((cellReferencePoint?.x)! + CGFloat( 25 * (arc4random_uniform(5) + 1)), (cellReferencePoint?.y)! + CGFloat(25 * (arc4random_uniform(5) + 1)))
+                
+                cell.transform = CGAffineTransformMakeScale(0.1, 0.1)
+                cell.center = finalCenter
+                
+                let scaleAnimation = CAKeyframeAnimation(keyPath: "transform")
+                scaleAnimation.values = [NSValue.init(CATransform3D: CATransform3DMakeScale(1, 1, 1)), NSValue.init(CATransform3D: CATransform3DMakeScale(0.2, 0.2, 1)), NSValue.init(CATransform3D: CATransform3DMakeScale(0.1, 0.1, 0.1))]
+                scaleAnimation.keyTimes = [0, 0.3, 1]
+                scaleAnimation.calculationMode = kCAAnimationCubic
+                scaleAnimation.duration = 0.5
+                cell.layer.addAnimation(scaleAnimation, forKey: "scaleBack")
+                
+                let moveAnimation = CAKeyframeAnimation(keyPath: "position")
+                moveAnimation.values = [NSValue.init(CGPoint: initialCenter), NSValue.init(CGPoint: middleCenter), NSValue.init(CGPoint: finalCenter)]
+                moveAnimation.keyTimes = [0, 0.3, 1]
+                moveAnimation.calculationMode = kCAAnimationCubic
+                moveAnimation.duration = 0.5
+                cell.layer.addAnimation(moveAnimation, forKey: "moveBack")
+                
+            }
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("viewDidDisappear")
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -168,7 +213,6 @@ class SDEAlbumViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        print("call for cell")
         var identifier = ImageIdentifier
         let asset = SDEFetchResult.fetchAssetFrom(fetchResult!, index: indexPath.row, includeHidden: true)!
         switch asset.mediaType{
@@ -199,11 +243,11 @@ class SDEAlbumViewController: UICollectionViewController {
             let initialCenter = CGPointMake(cellReferencePoint!.x + 75, cellReferencePoint!.y + 75)
             let finalCenter = cell.center
             
-            var baseTime: NSTimeInterval = 0.4
+            var baseTime: NSTimeInterval = maskViewAnimationDuration
             if let nearestIndexPath = self.collectionView?.indexPathForItemAtPoint(initialCenter){
                 let delta = nearestIndexPath.row > indexPath.row ? nearestIndexPath.row - indexPath.row : indexPath.row - nearestIndexPath.row
                 let count = self.collectionView?.numberOfItemsInSection(0) > 30 ? 30 : self.collectionView?.numberOfItemsInSection(0)
-                baseTime = 0.4 + Double(count! - delta) * 0.0003
+                baseTime = maskViewAnimationDuration + Double(count! - delta) * 0.00033
             }
             
             let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(baseTime * Double(NSEC_PER_SEC)))
@@ -254,6 +298,7 @@ class SDEAlbumViewController: UICollectionViewController {
 
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
                     CATransaction.begin()
+                    
                     CATransaction.setCompletionBlock({
                         cell.transform = CGAffineTransformIdentity
                         cell.center = finalCenter
@@ -263,14 +308,16 @@ class SDEAlbumViewController: UICollectionViewController {
                     scaleAnimation.values = [NSValue.init(CATransform3D: CATransform3DMakeScale(0.01, 0.01, 1)), NSValue.init(CATransform3D: CATransform3DMakeScale(0.2, 0.2, 1)), NSValue.init(CATransform3D: CATransform3DMakeScale(1, 1, 1))]
                     scaleAnimation.keyTimes = [0, 0.7, 1]
                     scaleAnimation.calculationMode = kCAAnimationCubic
-                    scaleAnimation.duration = 0.65
+                    scaleAnimation.duration = 0.6
+                    scaleAnimation.removedOnCompletion = true
                     cell.layer.addAnimation(scaleAnimation, forKey: "scale")
                     
                     let moveAnimation = CAKeyframeAnimation(keyPath: "position")
                     moveAnimation.values = [NSValue.init(CGPoint: randomInitialCenter), NSValue.init(CGPoint: initialCenter), NSValue.init(CGPoint: finalCenter)]
                     moveAnimation.keyTimes = [0, 0.7, 1]
                     moveAnimation.calculationMode = kCAAnimationCubic
-                    moveAnimation.duration = 0.65
+                    moveAnimation.duration = 0.6
+                    scaleAnimation.removedOnCompletion = true
                     cell.layer.addAnimation(moveAnimation, forKey: "move")
                     
                     CATransaction.commit()
@@ -283,7 +330,6 @@ class SDEAlbumViewController: UICollectionViewController {
                 cell.center = initialCenter
                 let imageView = cell.viewWithTag(-10) as! UIImageView
                 imageView.contentMode = .ScaleAspectFit
-                print("Quick Transition")
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
                     UIView.animateWithDuration(cellAnimationDurationOne, animations: {
                         cell.transform = CGAffineTransformMakeScale(0.8, 0.8)

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8152.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ej0-qV-deg">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
     </dependencies>
     <scenes>
@@ -29,7 +30,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rXI-23-sPq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.27058823529999998" green="0.72941176470000002" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lKd-Uz-WuU">
                             <size key="itemSize" width="170" height="190"/>
                             <size key="headerReferenceSize" width="100" height="50"/>
@@ -45,21 +46,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="-20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZx-5N-aFd">
-                                            <rect key="frame" x="0.0" y="160" width="170" height="30"/>
+                                            <rect key="frame" x="0.0" y="170" width="170" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="aYE-R4-3Zy"/>
+                                                <constraint firstAttribute="height" constant="20" id="aYE-R4-3Zy"/>
                                             </constraints>
                                             <attributedString key="attributedText">
                                                 <fragment content="Camera Roll ">
                                                     <attributes>
-                                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <font key="NSFont" size="17" name="HelveticaNeue"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                     </attributes>
                                                 </fragment>
                                                 <fragment content="42">
                                                     <attributes>
-                                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <font key="NSFont" size="15" name="HelveticaNeue"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                     </attributes>
@@ -68,7 +69,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="-10" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T4P-Sd-G6E">
-                                            <rect key="frame" x="10" y="10" width="150" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
                                     </subviews>
@@ -76,11 +77,11 @@
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="T4P-Sd-G6E" firstAttribute="leading" secondItem="reE-m0-fza" secondAttribute="leading" constant="10" id="0uN-Xs-VKQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="T4P-Sd-G6E" secondAttribute="trailing" constant="10" id="IFz-9k-VUl"/>
-                                    <constraint firstAttribute="bottom" secondItem="T4P-Sd-G6E" secondAttribute="bottom" constant="30" id="Rsh-bp-Eri"/>
+                                    <constraint firstItem="T4P-Sd-G6E" firstAttribute="leading" secondItem="reE-m0-fza" secondAttribute="leading" id="0uN-Xs-VKQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="T4P-Sd-G6E" secondAttribute="trailing" id="IFz-9k-VUl"/>
+                                    <constraint firstAttribute="bottom" secondItem="T4P-Sd-G6E" secondAttribute="bottom" constant="20" id="Rsh-bp-Eri"/>
                                     <constraint firstAttribute="trailing" secondItem="TZx-5N-aFd" secondAttribute="trailing" id="Ve5-e4-ZKD"/>
-                                    <constraint firstAttribute="top" secondItem="T4P-Sd-G6E" secondAttribute="top" constant="-10" id="Vl6-ih-pgr"/>
+                                    <constraint firstAttribute="top" secondItem="T4P-Sd-G6E" secondAttribute="top" id="Vl6-ih-pgr"/>
                                     <constraint firstAttribute="bottom" secondItem="TZx-5N-aFd" secondAttribute="bottom" id="ess-kT-hzq"/>
                                     <constraint firstAttribute="leading" secondItem="TZx-5N-aFd" secondAttribute="leading" id="mOP-LS-8wJ"/>
                                 </constraints>
@@ -93,7 +94,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" tag="-10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGH-zl-e1J">
                                     <rect key="frame" x="8" y="14" width="330" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>

@@ -49,6 +49,7 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
     )
     
     var openAlbumStyle:Int = 0
+    var albumImageView: UIImageView?
     
     //MARK: View Life Circle
     override func awakeFromNib() {
@@ -90,13 +91,6 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
         let tapGesture = UITapGestureRecognizer(target: self, action: "tapDetected:")
         self.view.addGestureRecognizer(tapGesture)
 
-        //self.collectionView?.backgroundColor = UIColor.whiteColor()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -104,6 +98,13 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
         self.tabBarController?.navigationItem.title = "Galleries"
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if albumImageView != nil{
+            albumImageView?.alpha = 1.0
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -158,6 +159,9 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
         // Configure the cell
         if let imageView = cell.viewWithTag(-10) as? UIImageView{
+            imageView.layer.borderColor = UIColor.whiteColor().CGColor
+            imageView.layer.borderWidth = 10.0
+            
             let assetCollectionArray = dataSource[indexPath.section]
             let assetCollection = assetCollectionArray[indexPath.row]
             if let titleLabel = cell.viewWithTag(-20) as? UILabel{
@@ -168,7 +172,7 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
                 cellTitle.appendAttributedString(countText)
                 titleLabel.attributedText = cellTitle
             }
-            SDEFetchResult.fetchPosterImageForImageView(imageView, assetCollection: assetCollection, imageSize: CGSizeMake(150, 150))
+            SDEFetchResult.fetchPosterImageForImageView(imageView, assetCollection: assetCollection, imageSize: CGSizeMake(170, 170))
         }        
         return cell
     }
@@ -245,14 +249,14 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
         let cell = self.collectionView!.cellForItemAtIndexPath(indexPath)
         
         let titleLabel = cell?.viewWithTag(-20) as! UILabel
+        albumImageView = cell?.viewWithTag(-10) as? UIImageView
         UIView.animateWithDuration(0.1, animations: {
             titleLabel.transform = CGAffineTransformMakeTranslation(0, 30)
-            cell?.alpha = 0
+            self.albumImageView?.alpha = 0
             }, completion: {
                 finish in
                 
-                UIView.animateWithDuration(0.1, delay: 1, options: .AllowUserInteraction, animations: {
-                    cell?.alpha = 1
+                UIView.animateWithDuration(0.1, delay: 1.5, options: .AllowUserInteraction, animations: {
                     titleLabel.transform = CGAffineTransformIdentity
                     }, completion: nil)
                 
@@ -268,7 +272,7 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
         
         if let albumVC = self.storyboard?.instantiateViewControllerWithIdentifier("AlbumVC") as? SDEAlbumViewController{
             let assetCollection = self.dataSource[indexPath.section][indexPath.row]
-            albumVC.animationStyle = AlbumOpenStyle(rawValue: openAlbumStyle)
+            albumVC.animationStyle = AlbumOpenStyle(rawValue: 2)
             albumVC.assetCollection = assetCollection
             albumVC.cellReferencePoint = cellReferencePoint
             albumVC.imageViewOrigin = imageOriginInSuperView
@@ -289,9 +293,13 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
 
         let animator = SDETransitionAnimator()
         if operation == .Push{
-            animator.delay = 1.5
+            print("Push Transition")
+            animator.delay = 1.2
+            animator.operationType = .Push
         }else{
-            animator.delay = 0.5
+            print("Pop Transition")
+            animator.delay = 0.6
+            animator.operationType = .Pop
         }
         
         return animator

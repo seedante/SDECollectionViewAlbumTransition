@@ -12,11 +12,11 @@ import Photos
 private let ImageIdentifier = "ImageCell"
 private let VideoIdentifier = "VideoCell"
 
-private let maskViewAnimationDuration = 0.4
+private let maskViewAnimationDuration = 0.3
 private let backgroundColorAnimationDuration = 0.5
 private let backgroundColorAnimationDelay = 0.1
-private let cellAnimationDurationOne = 0.35
-private let cellAnimationDurationTwo = 0.25
+private let cellAnimationDurationOne = 0.3
+private let cellAnimationDurationTwo = 0.2
 
 enum AlbumOpenStyle: Int{
     case CurlUp = 0, FlipUp, FlyOut, QuickTransition
@@ -70,7 +70,7 @@ class SDEAlbumViewController: UICollectionViewController {
                     switch self.animationStyle!{
                     case .CurlUp:
                         UIView.transitionWithView(self.maskImageView, duration: maskViewAnimationDuration, options: [.TransitionCurlUp, .ShowHideTransitionViews], animations: {
-                            self.maskImageView.image = nil
+                            //self.maskImageView.image = nil
                         }, completion: {
                             finish in
                             self.maskImageView.alpha = 0
@@ -151,6 +151,7 @@ class SDEAlbumViewController: UICollectionViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        self.maskImageView.transform = CGAffineTransformIdentity
         self.maskImageView.frame.size = CGSizeMake(170, 170)
         self.maskImageView.center = CGPointMake(self.imageViewOrigin!.x, self.imageViewOrigin!.y + 85)
         self.maskImageView.layer.anchorPoint = CGPointMake(0, 0.5)
@@ -298,7 +299,6 @@ class SDEAlbumViewController: UICollectionViewController {
 
                 dispatch_after(delayTime, dispatch_get_main_queue(), {
                     CATransaction.begin()
-                    
                     CATransaction.setCompletionBlock({
                         cell.transform = CGAffineTransformIdentity
                         cell.center = finalCenter
@@ -306,18 +306,16 @@ class SDEAlbumViewController: UICollectionViewController {
                     
                     let scaleAnimation = CAKeyframeAnimation(keyPath: "transform")
                     scaleAnimation.values = [NSValue.init(CATransform3D: CATransform3DMakeScale(0.01, 0.01, 1)), NSValue.init(CATransform3D: CATransform3DMakeScale(0.2, 0.2, 1)), NSValue.init(CATransform3D: CATransform3DMakeScale(1, 1, 1))]
-                    scaleAnimation.keyTimes = [0, 0.7, 1]
+                    scaleAnimation.keyTimes = [0, 0.4, 1]
                     scaleAnimation.calculationMode = kCAAnimationCubic
-                    scaleAnimation.duration = 0.6
-                    scaleAnimation.removedOnCompletion = true
+                    scaleAnimation.duration = 0.5
                     cell.layer.addAnimation(scaleAnimation, forKey: "scale")
                     
                     let moveAnimation = CAKeyframeAnimation(keyPath: "position")
                     moveAnimation.values = [NSValue.init(CGPoint: randomInitialCenter), NSValue.init(CGPoint: initialCenter), NSValue.init(CGPoint: finalCenter)]
-                    moveAnimation.keyTimes = [0, 0.7, 1]
+                    moveAnimation.keyTimes = [0, 0.4, 1]
                     moveAnimation.calculationMode = kCAAnimationCubic
-                    moveAnimation.duration = 0.6
-                    scaleAnimation.removedOnCompletion = true
+                    moveAnimation.duration = 0.5
                     cell.layer.addAnimation(moveAnimation, forKey: "move")
                     
                     CATransaction.commit()

@@ -85,7 +85,6 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.delegate = self
         PHPhotoLibrary.sharedPhotoLibrary().registerChangeObserver(self)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: "tapDetected:")
@@ -271,8 +270,9 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
         print("origin in superView: \(imageOriginInSuperView)")
         
         if let albumVC = self.storyboard?.instantiateViewControllerWithIdentifier("AlbumVC") as? SDEAlbumViewController{
+            self.navigationController?.delegate = self
             let assetCollection = self.dataSource[indexPath.section][indexPath.row]
-            albumVC.animationStyle = AlbumOpenStyle(rawValue: 2)
+            albumVC.animationStyle = AlbumOpenStyle(rawValue: openAlbumStyle)
             albumVC.assetCollection = assetCollection
             albumVC.cellReferencePoint = cellReferencePoint
             albumVC.imageViewOrigin = imageOriginInSuperView

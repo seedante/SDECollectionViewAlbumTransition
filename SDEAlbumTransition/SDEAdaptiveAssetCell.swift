@@ -17,7 +17,6 @@ class SDEAdaptiveAssetCell: UICollectionViewCell {
 
     var asset: PHAsset?{
         willSet{
-            SDEFetchResult.fetchImageForImageView(imageView, asset: newValue!, imageSize: imageView.frame.size)
             durationLabel.text = newValue?.duration.humanOutput
             adjustLogoAndDurationLocation()
         }

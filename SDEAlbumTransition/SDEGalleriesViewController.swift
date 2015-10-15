@@ -13,7 +13,7 @@ import Photos
 private let reuseIdentifier = "Cell"
 private let headerReuseIdentifier = "Header"
 
-class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChangeObserver, UINavigationControllerDelegate {
+class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChangeObserver {
     
     var dataSource = [[PHAssetCollection]]()
     var headerDataSource = [String]()
@@ -171,7 +171,8 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
                 cellTitle.appendAttributedString(countText)
                 titleLabel.attributedText = cellTitle
             }
-            SDEFetchResult.fetchPosterImageForImageView(imageView, assetCollection: assetCollection, imageSize: CGSizeMake(170, 170))
+
+            PHFetchResult.fetchPosterImageForAssetCollection(assetCollection, imageView: imageView, targetSize: CGSizeMake(170, 170))
         }        
         return cell
     }
@@ -270,7 +271,7 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
         print("origin in superView: \(imageOriginInSuperView)")
         
         if let albumVC = self.storyboard?.instantiateViewControllerWithIdentifier("AlbumVC") as? SDEAlbumViewController{
-            self.navigationController?.delegate = self
+            self.navigationController?.delegate = SDENavigationDelegate()
             let assetCollection = self.dataSource[indexPath.section][indexPath.row]
             albumVC.animationStyle = AlbumOpenStyle(rawValue: openAlbumStyle)
             albumVC.assetCollection = assetCollection
@@ -278,7 +279,9 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
             albumVC.imageViewOrigin = imageOriginInSuperView
             let imageView = cell?.viewWithTag(-10) as! UIImageView
             albumVC.maskImageView.image = imageView.image
+            print("ready for Push")
             self.navigationController?.pushViewController(albumVC, animated: true)
+            print("Did push")
             
             if openAlbumStyle == 3{
                 openAlbumStyle = 0
@@ -288,20 +291,6 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
         }
     }
     
-    //MARK: UINavigationControllerDelegate
-    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-        let animator = SDETransitionAnimator()
-        if operation == .Push{
-            print("Push Transition")
-            animator.delay = 1.2
-            animator.operationType = .Push
-        }else{
-            print("Pop Transition")
-            animator.delay = 0.6
-            animator.operationType = .Pop
-        }
-        
-        return animator
-    }
+
 }

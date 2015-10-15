@@ -9,27 +9,36 @@
 import UIKit
 
 class SDETransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-    
-    var delay: NSTimeInterval?
-    var operationType: UINavigationControllerOperation?
+
+    private var operation: UINavigationControllerOperation
+
+    init(operation: UINavigationControllerOperation){
+        self.operation = operation
+        super.init()
+    }
     
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.5
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        switch operationType!{
+        switch operation{
         case .Push:
             print("Push Transition Begin: \(NSDate())")
-            //let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)
+            let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)
             let toView = transitionContext.viewForKey(UITransitionContextToViewKey)
             transitionContext.containerView()?.addSubview(toView!)
-            
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay! * Double(NSEC_PER_SEC)))
+
+            let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! UICollectionViewController
+
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.2 * Double(NSEC_PER_SEC)))
             dispatch_after(delayTime, dispatch_get_main_queue(), {
                 print("Push Transition Finish: \(NSDate())")
+                print(toVC.collectionView!.visibleCells())
                 transitionContext.completeTransition(true)
             })
+
+
         case .Pop:
             print("Pop Transition Begin: \(NSDate())")
             let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)
@@ -37,7 +46,7 @@ class SDETransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             transitionContext.containerView()?.insertSubview(toView!, belowSubview: fromView!)
             fromView?.backgroundColor = UIColor.clearColor()
             
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay! * Double(NSEC_PER_SEC)))
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.6 * Double(NSEC_PER_SEC)))
             dispatch_after(delayTime, dispatch_get_main_queue(), {
                 print("Pop Transition Finish: \(NSDate())")
                 transitionContext.completeTransition(true)

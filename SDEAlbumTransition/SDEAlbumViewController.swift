@@ -48,9 +48,10 @@ class SDEAlbumViewController: UICollectionViewController {
             self.collectionView?.reloadData()
         }
     }
-    
+
+    //MARK: Life circle
     override func viewDidLoad() {
-        print("viewDidLoad")
+        print("toView viewDidLoad")
         super.viewDidLoad()
         //animationStyle = AlbumOpenStyle(rawValue: arc4random_uniform(4))
         
@@ -139,16 +140,17 @@ class SDEAlbumViewController: UICollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppear")
+        print("toViewWillAppear")
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         fliped = true
-        print("viewDidAppear")
+        print("toViewDidAppear")
     }
     
     override func viewWillDisappear(animated: Bool) {
+        print("toViewWillDisappear")
         super.viewWillDisappear(animated)
         
         self.maskImageView.transform = CGAffineTransformIdentity
@@ -214,9 +216,10 @@ class SDEAlbumViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        print("show toView Cell")
         var identifier = ImageIdentifier
-        let asset = SDEFetchResult.fetchAssetFrom(fetchResult!, index: indexPath.row, includeHidden: true)!
-        switch asset.mediaType{
+        let asset = fetchResult?.getAssetAtIndex(indexPath.row)
+        switch asset!.mediaType{
         case .Image:
             identifier = ImageIdentifier
         case .Video:
@@ -228,11 +231,11 @@ class SDEAlbumViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath)
         
         if let imageView = cell.viewWithTag(-10) as? UIImageView{
-            SDEFetchResult.fetchImageForImageView(imageView, assetsFetchResult: fetchResult!, index: indexPath.row, imageSize: CGSizeMake(150, 150))
+            fetchResult?.fetchImageAtIndex(indexPath.row, imageView: imageView, targetSize: CGSizeMake(150, 150))
         }
         
         if let timeLabel = cell.viewWithTag(-30) as? UILabel{
-            timeLabel.text = asset.duration.humanOutput
+            timeLabel.text = asset!.duration.humanOutput
         }
         
         if identifier == VideoIdentifier{
@@ -265,7 +268,7 @@ class SDEAlbumViewController: UICollectionViewController {
                         }, completion: {
                             finish in
                             
-                            SDEFetchResult.fetchImageForImageView(imageView, assetsFetchResult: self.fetchResult!, index: indexPath.row, imageSize: CGSizeMake(150, 150))
+                            self.fetchResult?.fetchImageAtIndex(indexPath.row, imageView: imageView, targetSize: CGSizeMake(150, 150))
                             UIView.animateWithDuration(cellAnimationDurationTwo, delay: 0, options: [.CurveEaseOut, .BeginFromCurrentState], animations: {
                                 cell.center = finalCenter
                                 }, completion: nil)

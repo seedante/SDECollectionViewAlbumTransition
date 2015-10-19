@@ -11,29 +11,13 @@ import UIKit
 
 class SDENavigationControllerDelegate: NSObject, UINavigationControllerDelegate {
 
-    var interactive = false
-    var isPush = false
-    var animationController: UIViewControllerAnimatedTransitioning!
-    var interactionController: UIPercentDrivenInteractiveTransition?
+    private (set) var animationController: UIViewControllerAnimatedTransitioning!
 
     //MARK: UINavigationControllerDelegate
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         animationController = SDEPushAndPopAnimationController(operation: operation)
-        isPush = (operation == .Push)
         return animationController
     }
-
-    func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-
-        if interactive{
-            interactionController = UIPercentDrivenInteractiveTransition()
-            return interactionController
-        }
-
-        interactionController = nil
-        return nil
-    }
-
 }
 

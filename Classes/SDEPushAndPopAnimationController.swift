@@ -10,19 +10,20 @@ import UIKit
 
 class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 
-    private var operation: UINavigationControllerOperation
-    var coverEdgeInSets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    let coverEdgeInSets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     let coverViewBackgroundColor = UIColor.darkGrayColor()
-    var horizontalCount = 5
-    var verticalCount = 1
+    let horizontalCount = 5
+    var verticalCount = 1 //>= 1
     var horizontalGap: CGFloat = 0
     var verticalGap: CGFloat = 0
 
-    var fakeCoverView: UIView?
+    private var fakeCoverView: UIView?
 
-    internal let kAnimationDuration: Double = 1.0
-    internal let kCellAnimationSmallDelta: Double = 0.01
-    internal let kCellAnimationBigDelta: Double = 0.03
+    private let kAnimationDuration: Double = 1.0
+    private let kCellAnimationSmallDelta: Double = 0.01
+    private let kCellAnimationBigDelta: Double = 0.03
+
+    private var operation: UINavigationControllerOperation
 
     init(operation: UINavigationControllerOperation){
         self.operation = operation
@@ -73,7 +74,6 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
                     transitionContext.completeTransition(!isCancelled)
             })
 
-
         case .Pop:
             containerView?.insertSubview(toView!, belowSubview: fromView!)
 
@@ -86,9 +86,11 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
 
                 }, completion: { finished in
 
-                    let selectedCell = toVC?.collectionView?.cellForItemAtIndexPath(toVC!.selectedIndexPath)
-                    selectedCell?.hidden = false
                     let isCancelled = transitionContext.transitionWasCancelled()
+                    if !isCancelled{
+                        let selectedCell = toVC?.collectionView?.cellForItemAtIndexPath(toVC!.selectedIndexPath)
+                        selectedCell?.hidden = false
+                    }
                     transitionContext.completeTransition(!isCancelled)
             })
 
@@ -98,7 +100,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
     }
 
     //MARK: Push Transition Helper Method
-    func createAndSetupFakeCoverView(fromVC: UICollectionViewController, toVC: UICollectionViewController) -> UIView?{
+    private func createAndSetupFakeCoverView(fromVC: UICollectionViewController, toVC: UICollectionViewController) -> UIView?{
         let selectedCell = fromVC.collectionView?.cellForItemAtIndexPath(fromVC.selectedIndexPath)
         let snapshotCellView = selectedCell!.snapshotViewAfterScreenUpdates(false)
         snapshotCellView.tag = 10
@@ -118,7 +120,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
         return coverContainerView
     }
 
-    func addKeyFrameAnimationInPushForFakeCoverView(coverView: UIView?){
+    private func addKeyFrameAnimationInPushForFakeCoverView(coverView: UIView?){
         UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0.5, animations: {
             var flipLeftTransform = CATransform3DIdentity
             flipLeftTransform.m34 = -1.0 / 500.0
@@ -138,7 +140,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
 
     }
 
-    func addkeyFrameAnimationForBackgroundColorInPush(fromVC: UICollectionViewController, toVC: UICollectionViewController){
+    private func addkeyFrameAnimationForBackgroundColorInPush(fromVC: UICollectionViewController, toVC: UICollectionViewController){
         UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1.0, animations: {
             let toCollectionViewBackgroundColor = fromVC.collectionView?.backgroundColor
             toVC.collectionView?.backgroundColor = toCollectionViewBackgroundColor
@@ -183,7 +185,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
     }
 
 
-    func setupVisibleCellsBeforePushToVC(toVC:UICollectionViewController){
+    private func setupVisibleCellsBeforePushToVC(toVC:UICollectionViewController){
         if toVC.collectionView?.visibleCells().count > 0{
 
             let areaRect = toVC.collectionView!.convertRect(toVC.areaRectInSuperview, fromView: toVC.collectionView!.superview)
@@ -216,13 +218,13 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
     }
 
     //MARK: Pop Transition Helper Method
-    func addkeyFrameAnimationForBackgroundColorInPop(fromVC: UICollectionViewController){
+    private func addkeyFrameAnimationForBackgroundColorInPop(fromVC: UICollectionViewController){
         UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0.5, animations: {
             fromVC.collectionView?.backgroundColor = UIColor.clearColor()
         })
     }
 
-    func addKeyFrameAnimationInPopForFakeCoverView(coverView: UIView?){
+    private func addKeyFrameAnimationInPopForFakeCoverView(coverView: UIView?){
         UIView.addKeyframeWithRelativeStartTime(0.5, relativeDuration: 0.1, animations: {
             coverView?.alpha = 1
         })
@@ -239,7 +241,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
         })
     }
 
-    func addKeyFrameAnimationOnVisibleCellsInPopFromVC(fromVC: UICollectionViewController) {
+    private func addKeyFrameAnimationOnVisibleCellsInPopFromVC(fromVC: UICollectionViewController) {
         
         let visibleCellIndexPaths = fromVC.collectionView?.indexPathsForVisibleItems()
         if visibleCellIndexPaths?.count > 0{

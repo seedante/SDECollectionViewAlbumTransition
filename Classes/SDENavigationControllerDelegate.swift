@@ -12,8 +12,8 @@ import UIKit
 class SDENavigationControllerDelegate: NSObject, UINavigationControllerDelegate {
 
     var interactive = false
-    var animationController: UIViewControllerAnimatedTransitioning!
-    var interactionController: UIPercentDrivenInteractiveTransition?
+    private (set) var animationController: UIViewControllerAnimatedTransitioning!
+    private (set) var interactionController: UIPercentDrivenInteractiveTransition?
 
     //MARK: UINavigationControllerDelegate
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -28,6 +28,7 @@ class SDENavigationControllerDelegate: NSObject, UINavigationControllerDelegate 
         return animationController
     }
 
+    //If you want a interaction transition, you must implement this method.
     func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
 
         // interactive can only update in gesture action

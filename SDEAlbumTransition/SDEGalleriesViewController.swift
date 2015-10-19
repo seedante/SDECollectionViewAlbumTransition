@@ -47,10 +47,7 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
         .AlbumSyncedAlbum,
         .AlbumImported
     )
-    
-    var openAlbumStyle:Int = 0
-    var albumImageView: UIImageView?
-    
+
     //MARK: View Life Circle
     override func awakeFromNib() {
         fetchOptions.predicate = NSPredicate(format: "estimatedAssetCount > 0", argumentArray: nil)
@@ -86,10 +83,6 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
     override func viewDidLoad() {
         super.viewDidLoad()
         PHPhotoLibrary.sharedPhotoLibrary().registerChangeObserver(self)
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: "tapDetected:")
-        self.view.addGestureRecognizer(tapGesture)
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -99,9 +92,7 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if albumImageView != nil{
-            albumImageView?.alpha = 1.0
-        }
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -217,80 +208,34 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
         
         fetchData()
     }
-    
-    //MARK: Prepare for Transition
-    func tapDetected(sender: UITapGestureRecognizer){
-        let point = sender.locationInView(self.view)
-        let pointInCollectionView = self.view.convertPoint(point, toView: self.collectionView)
-        if let indexPath = self.collectionView?.indexPathForItemAtPoint(pointInCollectionView){
-            let cell = self.collectionView?.cellForItemAtIndexPath(indexPath)
-            if let rectInCollectionView = cell?.convertRect(CGRectMake(10, 10, 150, 150), toView: self.collectionView){
-                if rectInCollectionView.contains(pointInCollectionView){
-                    let circleView = UIView(frame: CGRectMake(point.x, point.y, 30.0, 30.0))
-                    circleView.layer.cornerRadius = 15.0
-                    circleView.backgroundColor = UIColor.blueColor()
-                    self.view.addSubview(circleView)
-                    
-                    UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: {
-                        circleView.transform = CGAffineTransformMakeScale(2, 2)
-                        circleView.alpha = 0
-                        }, completion: {
-                            finish in
-                            circleView.removeFromSuperview()
-                            self.prepareForSelectCellAtIndexPath(indexPath)
-                    })
-                    
-                }
-            }
-        }
-    }
-    
-    func prepareForSelectCellAtIndexPath(indexPath: NSIndexPath){
-        let cell = self.collectionView!.cellForItemAtIndexPath(indexPath)
-        
-        let titleLabel = cell?.viewWithTag(-20) as! UILabel
-        albumImageView = cell?.viewWithTag(-10) as? UIImageView
-        UIView.animateWithDuration(0.1, animations: {
-            titleLabel.transform = CGAffineTransformMakeTranslation(0, 30)
-            self.albumImageView?.alpha = 0
+
+    //MARK: UICollectionView Delegate
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.selectedIndexPath = indexPath
+
+        let layoutAttributes = self.collectionView!.layoutAttributesForItemAtIndexPath(indexPath)
+        let areaRect = self.collectionView!.convertRect(layoutAttributes!.frame, toView: self.collectionView!.superview)
+
+        let circleView = UIView(frame: CGRectMake(0, 0, 30.0, 30.0))
+        circleView.layer.cornerRadius = 15.0
+        circleView.backgroundColor = UIColor.blueColor()
+        self.collectionView?.addSubview(circleView)
+        circleView.center = layoutAttributes!.center
+
+        UIView.animateKeyframesWithDuration(0.3, delay: 0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: {
+            circleView.transform = CGAffineTransformMakeScale(2, 2)
+            circleView.alpha = 0
             }, completion: {
                 finish in
-                
-                UIView.animateWithDuration(0.1, delay: 1.5, options: .AllowUserInteraction, animations: {
-                    titleLabel.transform = CGAffineTransformIdentity
-                    }, completion: nil)
-                
-        })
-        
-        let cellReferencePoint = cell?.convertPoint(CGPointMake(10, 10), toView: self.collectionView!)
-        print("appearCenter: \(cellReferencePoint)")
-        
-        let layoutAttributes = self.collectionView!.layoutAttributesForItemAtIndexPath(indexPath)
-        let imageOriginInSuperView = self.collectionView!.convertPoint((layoutAttributes?.frame.origin)!, toView: self.collectionView!.superview)
-        //let imageOriginInSuperView = CGPointMake(originInSuperView.x + 10, originInSuperView.y + 10)
-        print("origin in superView: \(imageOriginInSuperView)")
-        
-        if let albumVC = self.storyboard?.instantiateViewControllerWithIdentifier("AlbumVC") as? SDEAlbumViewController{
-            self.navigationController?.delegate = SDENavigationDelegate()
-            let assetCollection = self.dataSource[indexPath.section][indexPath.row]
-            albumVC.animationStyle = AlbumOpenStyle(rawValue: openAlbumStyle)
-            albumVC.assetCollection = assetCollection
-            albumVC.cellReferencePoint = cellReferencePoint
-            albumVC.imageViewOrigin = imageOriginInSuperView
-            let imageView = cell?.viewWithTag(-10) as! UIImageView
-            albumVC.maskImageView.image = imageView.image
-            print("ready for Push")
-            self.navigationController?.pushViewController(albumVC, animated: true)
-            print("Did push")
-            
-            if openAlbumStyle == 3{
-                openAlbumStyle = 0
-            }else{
-                openAlbumStyle += 1
-            }
-        }
-    }
-    
 
+                circleView.removeFromSuperview()
+                if let albumVC = self.storyboard?.instantiateViewControllerWithIdentifier("AlbumVC") as? SDEAlbumViewController{
+                    let assetCollection = self.dataSource[indexPath.section][indexPath.row]
+                    albumVC.assetCollection = assetCollection
+                    albumVC.areaRectInSuperview = areaRect
+                    self.navigationController?.pushViewController(albumVC, animated: true)
+                }
+        })
+    }
 
 }

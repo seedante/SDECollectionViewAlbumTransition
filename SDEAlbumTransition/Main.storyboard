@@ -17,10 +17,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
+                        <outlet property="delegate" destination="BHZ-aO-Tta" id="FTW-It-wxh"/>
                         <segue destination="xDw-5x-glT" kind="relationship" relationship="rootViewController" id="G6K-Z3-Kyq"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N5v-lW-z1J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="BHZ-aO-Tta" customClass="SDENavigationControllerDelegate" customModule="SDEAlbumTransition" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="204" y="1089"/>
         </scene>
@@ -28,11 +30,11 @@
         <scene sceneID="k3R-fv-dFo">
             <objects>
                 <collectionViewController id="xDw-5x-glT" customClass="SDEGalleriesViewController" customModule="SDEAlbumTransition" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rXI-23-sPq">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rXI-23-sPq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.564653933" green="0.45339596269999999" blue="0.35711643100000001" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lKd-Uz-WuU">
                             <size key="itemSize" width="170" height="190"/>
                             <size key="headerReferenceSize" width="100" height="50"/>

@@ -12,7 +12,7 @@
 		FDBB4B591B5BDFBE00B6D674 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDBB4B571B5BDFBE00B6D674 /* LaunchScreen.storyboard */; };
 		FDBB4B681B5BE02400B6D674 /* SDEAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B601B5BE02400B6D674 /* SDEAlbumViewController.swift */; };
 		FDBB4B691B5BE02400B6D674 /* SDEGalleriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B611B5BE02400B6D674 /* SDEGalleriesViewController.swift */; };
-		FDBB4B6A1B5BE02400B6D674 /* SDEPushAndPopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B621B5BE02400B6D674 /* SDEPushAndPopTransitionAnimator.swift */; };
+		FDBB4B6A1B5BE02400B6D674 /* SDEPushAndPopAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B621B5BE02400B6D674 /* SDEPushAndPopAnimationController.swift */; };
 		FDBB4B6C1B5BE02400B6D674 /* SDEAdaptiveAssetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B641B5BE02400B6D674 /* SDEAdaptiveAssetCell.swift */; };
 		FDBB4B6D1B5BE02400B6D674 /* NSTimeIntervalOutputExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B651B5BE02400B6D674 /* NSTimeIntervalOutputExtension.swift */; };
 		FDBB4B6E1B5BE02400B6D674 /* video_call.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBB4B661B5BE02400B6D674 /* video_call.png */; };
@@ -31,7 +31,7 @@
 		FDBB4B5A1B5BDFBE00B6D674 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDBB4B601B5BE02400B6D674 /* SDEAlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDEAlbumViewController.swift; sourceTree = "<group>"; };
 		FDBB4B611B5BE02400B6D674 /* SDEGalleriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDEGalleriesViewController.swift; sourceTree = "<group>"; };
-		FDBB4B621B5BE02400B6D674 /* SDEPushAndPopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SDEPushAndPopTransitionAnimator.swift; path = Classes/SDEPushAndPopTransitionAnimator.swift; sourceTree = "<group>"; };
+		FDBB4B621B5BE02400B6D674 /* SDEPushAndPopAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SDEPushAndPopAnimationController.swift; path = Classes/SDEPushAndPopAnimationController.swift; sourceTree = "<group>"; };
 		FDBB4B641B5BE02400B6D674 /* SDEAdaptiveAssetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDEAdaptiveAssetCell.swift; sourceTree = "<group>"; };
 		FDBB4B651B5BE02400B6D674 /* NSTimeIntervalOutputExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTimeIntervalOutputExtension.swift; sourceTree = "<group>"; };
 		FDBB4B661B5BE02400B6D674 /* video_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video_call.png; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 		FDE437521BCF8723001A6BF8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				FDBB4B621B5BE02400B6D674 /* SDEPushAndPopTransitionAnimator.swift */,
+				FDBB4B621B5BE02400B6D674 /* SDEPushAndPopAnimationController.swift */,
 				FDE437501BCF86FC001A6BF8 /* SDENavigationControllerDelegate.swift */,
 				FDE437551BCFB09B001A6BF8 /* Extension */,
 			);
@@ -182,7 +182,7 @@
 			files = (
 				FDBB4B691B5BE02400B6D674 /* SDEGalleriesViewController.swift in Sources */,
 				FDBB4B6D1B5BE02400B6D674 /* NSTimeIntervalOutputExtension.swift in Sources */,
-				FDBB4B6A1B5BE02400B6D674 /* SDEPushAndPopTransitionAnimator.swift in Sources */,
+				FDBB4B6A1B5BE02400B6D674 /* SDEPushAndPopAnimationController.swift in Sources */,
 				FDE437541BCF9703001A6BF8 /* PHFetchResultExtension.swift in Sources */,
 				FDBB4B6C1B5BE02400B6D674 /* SDEAdaptiveAssetCell.swift in Sources */,
 				FDE437511BCF86FC001A6BF8 /* SDENavigationControllerDelegate.swift in Sources */,

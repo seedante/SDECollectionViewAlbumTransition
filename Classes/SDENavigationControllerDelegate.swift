@@ -19,7 +19,7 @@ class SDENavigationControllerDelegate: NSObject, UINavigationControllerDelegate 
     //MARK: UINavigationControllerDelegate
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-        animationController = SDEPushAndPopTransitionAnimator(operation: operation)
+        animationController = SDEPushAndPopAnimationController(operation: operation)
         isPush = (operation == .Push)
         return animationController
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SDEPushAndPopTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 
     private var operation: UINavigationControllerOperation
     var coverEdgeInSets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)

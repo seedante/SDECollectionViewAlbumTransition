@@ -22,14 +22,14 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N5v-lW-z1J" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="BHZ-aO-Tta" customClass="SDENavigationControllerDelegate" customModule="SDEAlbumTransition" customModuleProvider="target"/>
+                <customObject id="BHZ-aO-Tta" customClass="SDENavigationControllerDelegate" customModule="SDECollectionViewAlbumTransition" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="204" y="1089"/>
         </scene>
         <!--Galleries View Controller-->
         <scene sceneID="k3R-fv-dFo">
             <objects>
-                <collectionViewController id="xDw-5x-glT" customClass="SDEGalleriesViewController" customModule="SDEAlbumTransition" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="xDw-5x-glT" customClass="SDEGalleriesViewController" customModule="SDECollectionViewAlbumTransition" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rXI-23-sPq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -123,7 +123,7 @@
         <!--AlbumVC-->
         <scene sceneID="gmv-W3-Xii">
             <objects>
-                <collectionViewController storyboardIdentifier="AlbumVC" title="AlbumVC" id="RXd-7n-yCb" customClass="SDEAlbumViewController" customModule="SDEAlbumTransition" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="AlbumVC" title="AlbumVC" id="RXd-7n-yCb" customClass="SDEAlbumViewController" customModule="SDECollectionViewAlbumTransition" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="uzl-9Z-GQf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -154,7 +154,7 @@
                                 </view>
                                 <animations/>
                             </collectionViewCell>
-                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VideoCell" id="fu0-6d-z7G" customClass="SDEAdaptiveAssetCell" customModule="SDEAlbumTransition" customModuleProvider="target">
+                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VideoCell" id="fu0-6d-z7G" customClass="SDEAdaptiveAssetCell" customModule="SDECollectionViewAlbumTransition" customModuleProvider="target">
                                 <rect key="frame" x="225" y="20" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">

@@ -25,7 +25,7 @@
 
 /* Begin PBXFileReference section */
 		FDB179B01BD00B610029A9AB /* UICollectionViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UICollectionViewControllerExtension.swift; path = Classes/Extension/UICollectionViewControllerExtension.swift; sourceTree = "<group>"; };
-		FDBB4B4B1B5BDFBE00B6D674 /* SDEAlbumTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDEAlbumTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDBB4B4B1B5BDFBE00B6D674 /* SDECollectionViewAlbumTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDECollectionViewAlbumTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDBB4B4E1B5BDFBE00B6D674 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDBB4B581B5BDFBE00B6D674 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FDBB4B5A1B5BDFBE00B6D674 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				FDE437521BCF8723001A6BF8 /* Classes */,
-				FDBB4B4D1B5BDFBE00B6D674 /* SDEAlbumTransition */,
+				FDBB4B4D1B5BDFBE00B6D674 /* Example */,
 				FDBB4B4C1B5BDFBE00B6D674 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,12 +65,12 @@
 		FDBB4B4C1B5BDFBE00B6D674 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FDBB4B4B1B5BDFBE00B6D674 /* SDEAlbumTransition.app */,
+				FDBB4B4B1B5BDFBE00B6D674 /* SDECollectionViewAlbumTransition.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FDBB4B4D1B5BDFBE00B6D674 /* SDEAlbumTransition */ = {
+		FDBB4B4D1B5BDFBE00B6D674 /* Example */ = {
 			isa = PBXGroup;
 			children = (
 				FDBB4B651B5BE02400B6D674 /* NSTimeIntervalOutputExtension.swift */,
@@ -86,7 +86,7 @@
 				FDBB4B701B5BE08800B6D674 /* Main.storyboard */,
 				FDBB4B5A1B5BDFBE00B6D674 /* Info.plist */,
 			);
-			path = SDEAlbumTransition;
+			path = Example;
 			sourceTree = "<group>";
 		};
 		FDE437521BCF8723001A6BF8 /* Classes */ = {
@@ -110,9 +110,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FDBB4B4A1B5BDFBE00B6D674 /* SDEAlbumTransition */ = {
+		FDBB4B4A1B5BDFBE00B6D674 /* SDECollectionViewAlbumTransition */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FDBB4B5D1B5BDFBE00B6D674 /* Build configuration list for PBXNativeTarget "SDEAlbumTransition" */;
+			buildConfigurationList = FDBB4B5D1B5BDFBE00B6D674 /* Build configuration list for PBXNativeTarget "SDECollectionViewAlbumTransition" */;
 			buildPhases = (
 				FDBB4B471B5BDFBE00B6D674 /* Sources */,
 				FDBB4B481B5BDFBE00B6D674 /* Frameworks */,
@@ -122,9 +122,9 @@
 			);
 			dependencies = (
 			);
-			name = SDEAlbumTransition;
+			name = SDECollectionViewAlbumTransition;
 			productName = ExploreAlbumOpenAnimation;
-			productReference = FDBB4B4B1B5BDFBE00B6D674 /* SDEAlbumTransition.app */;
+			productReference = FDBB4B4B1B5BDFBE00B6D674 /* SDECollectionViewAlbumTransition.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -142,7 +142,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FDBB4B461B5BDFBE00B6D674 /* Build configuration list for PBXProject "SDEAlbumTransition" */;
+			buildConfigurationList = FDBB4B461B5BDFBE00B6D674 /* Build configuration list for PBXProject "SDECollectionViewAlbumTransition" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -155,7 +155,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FDBB4B4A1B5BDFBE00B6D674 /* SDEAlbumTransition */,
+				FDBB4B4A1B5BDFBE00B6D674 /* SDECollectionViewAlbumTransition */,
 			);
 		};
 /* End PBXProject section */
@@ -292,13 +292,12 @@
 		FDBB4B5E1B5BDFBE00B6D674 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = SDEAlbumTransition/Info.plist;
+				INFOPLIST_FILE = Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seedante.SDEAlbumTransition;
-				PRODUCT_NAME = SDEAlbumTransition;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seedante.SDECollectionViewAlbumTransition;
+				PRODUCT_NAME = SDECollectionViewAlbumTransition;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -306,13 +305,12 @@
 		FDBB4B5F1B5BDFBE00B6D674 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = SDEAlbumTransition/Info.plist;
+				INFOPLIST_FILE = Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seedante.SDEAlbumTransition;
-				PRODUCT_NAME = SDEAlbumTransition;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seedante.SDECollectionViewAlbumTransition;
+				PRODUCT_NAME = SDECollectionViewAlbumTransition;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -320,7 +318,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FDBB4B461B5BDFBE00B6D674 /* Build configuration list for PBXProject "SDEAlbumTransition" */ = {
+		FDBB4B461B5BDFBE00B6D674 /* Build configuration list for PBXProject "SDECollectionViewAlbumTransition" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FDBB4B5B1B5BDFBE00B6D674 /* Debug */,
@@ -329,7 +327,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FDBB4B5D1B5BDFBE00B6D674 /* Build configuration list for PBXNativeTarget "SDEAlbumTransition" */ = {
+		FDBB4B5D1B5BDFBE00B6D674 /* Build configuration list for PBXNativeTarget "SDECollectionViewAlbumTransition" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FDBB4B5E1B5BDFBE00B6D674 /* Debug */,

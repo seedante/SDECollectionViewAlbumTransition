@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FDBB4B4A1B5BDFBE00B6D674"
-               BuildableName = "SDEAlbumTransition.app"
-               BlueprintName = "SDEAlbumTransition"
-               ReferencedContainer = "container:SDEAlbumTransition.xcodeproj">
+               BuildableName = "SDECollectionViewAlbumTransition.app"
+               BlueprintName = "SDECollectionViewAlbumTransition"
+               ReferencedContainer = "container:SDECollectionViewAlbumTransition.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FDBB4B4A1B5BDFBE00B6D674"
-            BuildableName = "SDEAlbumTransition.app"
-            BlueprintName = "SDEAlbumTransition"
-            ReferencedContainer = "container:SDEAlbumTransition.xcodeproj">
+            BuildableName = "SDECollectionViewAlbumTransition.app"
+            BlueprintName = "SDECollectionViewAlbumTransition"
+            ReferencedContainer = "container:SDECollectionViewAlbumTransition.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FDBB4B4A1B5BDFBE00B6D674"
-            BuildableName = "SDEAlbumTransition.app"
-            BlueprintName = "SDEAlbumTransition"
-            ReferencedContainer = "container:SDEAlbumTransition.xcodeproj">
+            BuildableName = "SDECollectionViewAlbumTransition.app"
+            BlueprintName = "SDECollectionViewAlbumTransition"
+            ReferencedContainer = "container:SDECollectionViewAlbumTransition.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FDBB4B4A1B5BDFBE00B6D674"
-            BuildableName = "SDEAlbumTransition.app"
-            BlueprintName = "SDEAlbumTransition"
-            ReferencedContainer = "container:SDEAlbumTransition.xcodeproj">
+            BuildableName = "SDECollectionViewAlbumTransition.app"
+            BlueprintName = "SDECollectionViewAlbumTransition"
+            ReferencedContainer = "container:SDECollectionViewAlbumTransition.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

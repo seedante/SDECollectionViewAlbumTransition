@@ -12,7 +12,6 @@ import UIKit
 class SDENavigationControllerDelegate: NSObject, UINavigationControllerDelegate {
 
     var interactive = false
-    var isPush = false
     var animationController: UIViewControllerAnimatedTransitioning!
     var interactionController: UIPercentDrivenInteractiveTransition?
 
@@ -20,18 +19,22 @@ class SDENavigationControllerDelegate: NSObject, UINavigationControllerDelegate 
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         animationController = SDEPushAndPopAnimationController(operation: operation)
-        isPush = (operation == .Push)
+        if operation == .Push{
+            if let toCollectionVC = toVC as? UICollectionViewController{
+                interactionController =  SDEPopPinchInteractionController(toVC: toCollectionVC, holder: self)
+            }
+        }
+
         return animationController
     }
 
     func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
 
+        // interactive can only update in gesture action
         if interactive{
-            interactionController = UIPercentDrivenInteractiveTransition()
             return interactionController
         }
 
-        interactionController = nil
         return nil
     }
 

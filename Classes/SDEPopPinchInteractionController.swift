@@ -9,9 +9,9 @@
 import UIKit
 
 class SDEPopPinchInteractionController: UIPercentDrivenInteractiveTransition {
-    var pinchGesture = UIPinchGestureRecognizer()
-    var topVC: UICollectionViewController
-    unowned var holder: SDENavigationControllerDelegate
+    private var pinchGesture = UIPinchGestureRecognizer()
+    private var topVC: UICollectionViewController
+    private unowned var holder: SDENavigationControllerDelegate
 
     init(toVC topVC: UICollectionViewController, holder: SDENavigationControllerDelegate) {
         self.topVC = topVC
@@ -20,12 +20,12 @@ class SDEPopPinchInteractionController: UIPercentDrivenInteractiveTransition {
         addPinchGestureOnView(self.topVC.view)
     }
 
-    func addPinchGestureOnView(view: UIView){
+    private func addPinchGestureOnView(view: UIView){
         pinchGesture.addTarget(self, action: "sde_handlePinch:")
         view.addGestureRecognizer(pinchGesture)
     }
 
-    func sde_handlePinch(gesture: UIPinchGestureRecognizer){
+    private func sde_handlePinch(gesture: UIPinchGestureRecognizer){
         switch gesture.state{
         case .Began:
             if gesture.scale < 1.0{
@@ -53,7 +53,6 @@ class SDEPopPinchInteractionController: UIPercentDrivenInteractiveTransition {
     }
 
     deinit{
-        print("deinit")
         pinchGesture.view?.removeGestureRecognizer(pinchGesture)
     }
 }

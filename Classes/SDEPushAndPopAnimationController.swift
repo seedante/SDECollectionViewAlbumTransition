@@ -10,19 +10,20 @@ import UIKit
 
 class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 
-    private var operation: UINavigationControllerOperation
-    var coverEdgeInSets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    let coverEdgeInSets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     let coverViewBackgroundColor = UIColor.darkGrayColor()
-    var horizontalCount = 5
+    let horizontalCount = 5
     var verticalCount = 1
     var horizontalGap: CGFloat = 0
     var verticalGap: CGFloat = 0
 
     var fakeCoverView: UIView?
 
-    internal let kAnimationDuration: Double = 1.0
-    internal let kCellAnimationSmallDelta: Double = 0.01
-    internal let kCellAnimationBigDelta: Double = 0.03
+    private let kAnimationDuration: Double = 1.0
+    private let kCellAnimationSmallDelta: Double = 0.01
+    private let kCellAnimationBigDelta: Double = 0.03
+
+    private var operation: UINavigationControllerOperation
 
     init(operation: UINavigationControllerOperation){
         self.operation = operation
@@ -109,7 +110,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
         coverContainerView.tag = 1000
 
         toVC.view.addSubview(coverContainerView)
-        coverContainerView.frame = toVC.areaRectInSuperview
+        coverContainerView.frame = toVC.coverRectInSuperview
 
         let frame = coverContainerView.frame
         coverContainerView.layer.anchorPoint = CGPointMake(0, 0.5)
@@ -186,7 +187,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
     func setupVisibleCellsBeforePushToVC(toVC:UICollectionViewController){
         if toVC.collectionView?.visibleCells().count > 0{
 
-            let areaRect = toVC.collectionView!.convertRect(toVC.areaRectInSuperview, fromView: toVC.collectionView!.superview)
+            let areaRect = toVC.collectionView!.convertRect(toVC.coverRectInSuperview, fromView: toVC.collectionView!.superview)
             let cellsAreaRect = UIEdgeInsetsInsetRect(areaRect, coverEdgeInSets)
 
             let cellWidth = (cellsAreaRect.width - CGFloat(horizontalCount - 1) * horizontalGap) / CGFloat(horizontalCount)
@@ -248,7 +249,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
             let minimalRow = rows.reduce(Int.max, combine: { $0 < $1 ? $0 : $1 })
 
             let collectionView = fromVC.collectionView!
-            let areaRect = collectionView.convertRect(fromVC.areaRectInSuperview, fromView: fromVC.collectionView!.superview)
+            let areaRect = collectionView.convertRect(fromVC.coverRectInSuperview, fromView: fromVC.collectionView!.superview)
             let cellsAreaRect = UIEdgeInsetsInsetRect(areaRect, coverEdgeInSets)
 
             let cellWidth = (cellsAreaRect.width - CGFloat(horizontalCount - 1) * horizontalGap) / CGFloat(horizontalCount)

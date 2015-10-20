@@ -31,7 +31,6 @@ class SDENavigationControllerDelegate: NSObject, UINavigationControllerDelegate 
             return interactionController
         }
 
-        interactionController = nil
         return nil
     }
 

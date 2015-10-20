@@ -48,6 +48,13 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
         .AlbumImported
     )
 
+    var transitionDelegate: SDENavigationControllerDelegate?
+    var pinchGestureRecognizer: UIPinchGestureRecognizer?{
+        didSet(newValue){
+            collectionView?.addGestureRecognizer(pinchGestureRecognizer!)
+        }
+    }
+
     //MARK: View Life Circle
     override func awakeFromNib() {
         fetchOptions.predicate = NSPredicate(format: "estimatedAssetCount > 0", argumentArray: nil)
@@ -83,6 +90,7 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
     override func viewDidLoad() {
         super.viewDidLoad()
         PHPhotoLibrary.sharedPhotoLibrary().registerChangeObserver(self)
+        pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: "handlePinch:")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -90,20 +98,14 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
         self.tabBarController?.navigationItem.title = "Galleries"
     }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     deinit{
         PHPhotoLibrary.sharedPhotoLibrary().unregisterChangeObserver(self)
+        if pinchGestureRecognizer != nil{
+            collectionView?.removeGestureRecognizer(pinchGestureRecognizer!)
+        }
+
     }
-    
+
     func fetchData(){
         if headerDataSource.count > 0{
             headerDataSource.removeAll()
@@ -232,10 +234,98 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
                 if let albumVC = self.storyboard?.instantiateViewControllerWithIdentifier("AlbumVC") as? SDEAlbumViewController{
                     let assetCollection = self.dataSource[indexPath.section][indexPath.row]
                     albumVC.assetCollection = assetCollection
-                    albumVC.areaRectInSuperview = areaRect
+                    albumVC.coverRectInSuperview = areaRect
                     self.navigationController?.pushViewController(albumVC, animated: true)
                 }
         })
+    }
+
+    //MARK: Pinch Push and Pop
+    func getIndexPathForGesture(gesture: UIPinchGestureRecognizer) -> NSIndexPath?{
+        let location0 = gesture.locationOfTouch(0, inView: gesture.view)
+        let location1 = gesture.locationOfTouch(1, inView: gesture.view)
+        let middleLocation = CGPointMake((location0.x + location1.x)/2, (location0.y + location1.y)/2)
+        let indexPath = collectionView?.indexPathForItemAtPoint(middleLocation)
+        return indexPath
+    }
+
+    func handlePinch(gesture: UIPinchGestureRecognizer){
+        switch gesture.state{
+        case .Began:
+            if gesture.scale >= 1.0{
+                guard let indexPath = getIndexPathForGesture(gesture) else{
+                    return
+                }
+
+                self.selectedIndexPath = indexPath
+                let layoutAttributes = collectionView!.layoutAttributesForItemAtIndexPath(indexPath)
+                let areaRect = collectionView!.convertRect(layoutAttributes!.frame, toView: collectionView?.superview)
+
+                if let toVC = storyboard?.instantiateViewControllerWithIdentifier("AlbumVC") as? SDEAlbumViewController{
+                    let assetCollection = dataSource[indexPath.section][indexPath.row]
+                    toVC.assetCollection = assetCollection
+                    toVC.coverRectInSuperview = areaRect
+
+                    transitionDelegate = navigationController?.delegate as? SDENavigationControllerDelegate
+                    transitionDelegate?.interactive = true
+                    navigationController?.pushViewController(toVC, animated: true)
+                }
+
+            }else{
+                //after view controller is poped, UIViewController.navigationController is nil. So you need to keep it somewhere before pop
+                transitionDelegate = self.navigationController?.delegate as? SDENavigationControllerDelegate
+                transitionDelegate?.interactive = true
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+
+        case .Changed:
+
+            guard transitionDelegate != nil else{
+                return
+            }
+
+            guard let interactionController = transitionDelegate?.interactionController else{
+                return
+            }
+
+            var progress = gesture.scale
+            if transitionDelegate!.isPush{
+                progress = gesture.scale - 1.0 >= 0.9 ? 0.9 : gesture.scale - 1.0
+            }else{
+                progress = 1.0 - gesture.scale
+            }
+
+            interactionController.updateInteractiveTransition(progress)
+
+        case .Ended, .Cancelled:
+            guard transitionDelegate != nil else{
+                return
+            }
+
+            guard let interactionController = transitionDelegate?.interactionController else{
+                return
+            }
+
+            var progress = gesture.scale
+            if transitionDelegate!.isPush{
+                progress = gesture.scale - 1.0 >= 0.9 ? 0.9 : gesture.scale - 1.0
+            }else{
+                progress = 1.0 - gesture.scale
+            }
+
+            if progress >= 0.4{
+                interactionController.finishInteractiveTransition()
+            }else{
+                interactionController.cancelInteractiveTransition()
+            }
+            transitionDelegate?.interactive = false
+
+        default:
+            guard transitionDelegate != nil else{
+                return
+            }
+            transitionDelegate?.interactive = false
+        }
     }
 
 }

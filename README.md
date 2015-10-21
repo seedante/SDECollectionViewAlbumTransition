@@ -39,7 +39,7 @@ There is a little problem with time delta algorithm, I will update if I find the
 
 ## Pinch to push?
 
-Pinching to push is a little complex. 
+Pinching to push is a little complex. ViewController to push must be created before push, and init a ViewController is complex than do something to a existed ViewController, so this is why most of libraries do not support pinch to push. 
 
 If you want to support pinch to push, switch to the branch "Pinch-Push-Pop-Transition", drag files in "Classes" folder in this branch into your project, 
 there is a little difference between "Pinch-Push-Pop-Transition" branch with other branches.

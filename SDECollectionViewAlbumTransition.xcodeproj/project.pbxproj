@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD6DDDEE1BD742D1005387E8 /* AlbumTransition.gif in Resources */ = {isa = PBXBuildFile; fileRef = FD6DDDED1BD742D1005387E8 /* AlbumTransition.gif */; settings = {ASSET_TAGS = (); }; };
 		FD83B6221BD529C100C4326E /* SDEPopPinchInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD83B6211BD529C100C4326E /* SDEPopPinchInteractionController.swift */; settings = {ASSET_TAGS = (); }; };
 		FDB179B41BD00B610029A9AB /* UICollectionViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB179B01BD00B610029A9AB /* UICollectionViewControllerExtension.swift */; settings = {ASSET_TAGS = (); }; };
 		FDBB4B4F1B5BDFBE00B6D674 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B4E1B5BDFBE00B6D674 /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD6DDDED1BD742D1005387E8 /* AlbumTransition.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = AlbumTransition.gif; sourceTree = "<group>"; };
 		FD83B6211BD529C100C4326E /* SDEPopPinchInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SDEPopPinchInteractionController.swift; path = Classes/SDEPopPinchInteractionController.swift; sourceTree = "<group>"; };
 		FDB179B01BD00B610029A9AB /* UICollectionViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UICollectionViewControllerExtension.swift; path = Classes/Extension/UICollectionViewControllerExtension.swift; sourceTree = "<group>"; };
 		FDBB4B4B1B5BDFBE00B6D674 /* SDECollectionViewAlbumTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDECollectionViewAlbumTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +60,7 @@
 		FDBB4B421B5BDFBE00B6D674 = {
 			isa = PBXGroup;
 			children = (
+				FD6DDDED1BD742D1005387E8 /* AlbumTransition.gif */,
 				FDE437521BCF8723001A6BF8 /* Classes */,
 				FDBB4B4D1B5BDFBE00B6D674 /* Example */,
 				FDBB4B4C1B5BDFBE00B6D674 /* Products */,
@@ -171,6 +174,7 @@
 				FDBB4B591B5BDFBE00B6D674 /* LaunchScreen.storyboard in Resources */,
 				FDBB4B711B5BE08800B6D674 /* Main.storyboard in Resources */,
 				FDBB4B6F1B5BE02400B6D674 /* video_call@2x.png in Resources */,
+				FD6DDDEE1BD742D1005387E8 /* AlbumTransition.gif in Resources */,
 				FDBB4B6E1B5BE02400B6D674 /* video_call.png in Resources */,
 				FDBB4B731B5BE20800B6D674 /* Default-568h@2x.png in Resources */,
 			);

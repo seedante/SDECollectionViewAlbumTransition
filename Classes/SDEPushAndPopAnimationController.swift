@@ -17,8 +17,6 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
     var horizontalGap: CGFloat = 0
     var verticalGap: CGFloat = 0
 
-    private var fakeCoverView: UIView?
-
     private let kAnimationDuration: Double = 1.0
     private let kCellAnimationSmallDelta: Double = 0.01
     private let kCellAnimationBigDelta: Double = 0.03
@@ -55,14 +53,14 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
             setupVisibleCellsBeforePushToVC(toVC!)
             containerView?.addSubview(toView!)
 
-            fakeCoverView = createAndSetupFakeCoverView(fromVC!, toVC: toVC!)
+            let fakeCoverView = createAndSetupFakeCoverView(fromVC!, toVC: toVC!)
 
             UIView.setAnimationCurve(UIViewAnimationCurve.EaseOut)
             let options: UIViewKeyframeAnimationOptions = [.BeginFromCurrentState, .OverrideInheritedDuration, .CalculationModeCubic, .CalculationModeLinear]
             UIView.animateKeyframesWithDuration(duration, delay: 0, options: options, animations: {
 
                 self.addkeyFrameAnimationForBackgroundColorInPush(fromVC!, toVC: toVC!)
-                self.addKeyFrameAnimationInPushForFakeCoverView(self.fakeCoverView)
+                self.addKeyFrameAnimationInPushForFakeCoverView(fakeCoverView)
                 self.addKeyFrameAnimationOnVisibleCellsInPushToVC(toVC!)
 
                 }, completion: { finished in

@@ -18,7 +18,7 @@ Drag files in "Classes" folder into your project.
 
 ![set the delegate](https://raw.githubusercontent.com/seedante/SDECollectionViewAlbumTransition/PinchPopTransition/Config2.png)
 
-Or, you want to set it in the code.
+
 - At the last, add a line code in your UICollectionView's delegate:
 
         override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

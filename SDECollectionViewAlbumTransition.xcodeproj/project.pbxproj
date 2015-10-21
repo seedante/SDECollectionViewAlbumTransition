@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		FD6DDDED1BD742D1005387E8 /* AlbumTransition.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = AlbumTransition.gif; sourceTree = "<group>"; };
 		FD6DDDF71BD74CC3005387E8 /* Config2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Config2.png; sourceTree = "<group>"; };
-		FD6DDE031BD75271005387E8 /* Config1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Config1.png; path = Example/Config1.png; sourceTree = "<group>"; };
+		FD6DDE031BD75271005387E8 /* Config1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Config1.png; sourceTree = "<group>"; };
 		FD83B6211BD529C100C4326E /* SDEPopPinchInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SDEPopPinchInteractionController.swift; path = Classes/SDEPopPinchInteractionController.swift; sourceTree = "<group>"; };
 		FDB179B01BD00B610029A9AB /* UICollectionViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UICollectionViewControllerExtension.swift; path = Classes/Extension/UICollectionViewControllerExtension.swift; sourceTree = "<group>"; };
 		FDBB4B4B1B5BDFBE00B6D674 /* SDECollectionViewAlbumTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDECollectionViewAlbumTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };

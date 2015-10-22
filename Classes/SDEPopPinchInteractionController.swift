@@ -25,7 +25,7 @@ class SDEPopPinchInteractionController: UIPercentDrivenInteractiveTransition {
         view.addGestureRecognizer(pinchGesture)
     }
 
-    private func sde_handlePinch(gesture: UIPinchGestureRecognizer){
+    internal func sde_handlePinch(gesture: UIPinchGestureRecognizer){
         switch gesture.state{
         case .Began:
             if gesture.scale < 1.0{

@@ -31,7 +31,8 @@ Drag files in "Classes" folder into your project.
 
 ## Requirements
 
-- iOS 7.0+
+- iOS 8.0+
+- Swift 2.0
 
 Thanks for [@CezaryKopacz](https://github.com/CezaryKopacz/CKWaveCollectionViewTransition), [@ColinEberhardt](https://github.com/ColinEberhardt/VCTransitionsLibrary). I learn a lot from their repo.
 And thanks for [ Vincent Ngo](http://www.raywenderlich.com/94565/how-to-create-an-ios-book-open-animation-part-1) very much, I find the key to resolve the problem of pinching to push.

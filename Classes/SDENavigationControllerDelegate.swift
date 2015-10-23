@@ -20,10 +20,7 @@ class SDENavigationControllerDelegate: NSObject, UINavigationControllerDelegate 
 
         animationController = SDEPushAndPopAnimationController(operation: operation)
         if operation == .Push{
-            if let fromCollectionVC = fromVC as? UICollectionViewController, let toCollectionVC = toVC as? UICollectionViewController{
-                let layoutAttributes = fromCollectionVC.collectionView?.layoutAttributesForItemAtIndexPath(fromCollectionVC.selectedIndexPath)
-                let areaRect = fromCollectionVC.collectionView!.convertRect(layoutAttributes!.frame, toView: fromCollectionVC.collectionView?.superview)
-                toCollectionVC.areaRectInSuperview = areaRect
+            if let toCollectionVC = toVC as? UICollectionViewController{
                 interactionController =  SDEPopPinchInteractionController(toVC: toCollectionVC, holder: self)
             }
         }

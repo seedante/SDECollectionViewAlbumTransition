@@ -47,6 +47,10 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
             let selectedCell = fromVC?.collectionView?.cellForItemAtIndexPath(fromVC!.selectedIndexPath)
             selectedCell?.hidden = true
 
+            let layoutAttributes = fromVC!.collectionView?.layoutAttributesForItemAtIndexPath(fromVC!.selectedIndexPath)
+            let areaRect = fromVC!.collectionView?.convertRect(layoutAttributes!.frame, toView: fromVC!.collectionView?.superview)
+            toVC!.areaRectInSuperview = areaRect!
+
             //key code, the most important code here. without this line, you can't get visibleCells from UICollectionView.
             //And, there are other ways, Just make view redraw.
             toVC?.view.layoutIfNeeded()

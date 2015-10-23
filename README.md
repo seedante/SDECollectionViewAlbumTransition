@@ -19,14 +19,10 @@ Drag files in "Classes" folder into your project.
 ![set the delegate](https://raw.githubusercontent.com/seedante/SDECollectionViewAlbumTransition/PinchPopTransition/Config2.png)
 
 
-- At the last, add several lines code in your UICollectionView's delegate:
+- At the last, add one line code in your UICollectionView's delegate:
 
         override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
             self.selectedIndexPath = indexPath
-            let layoutAttributes = self.collectionView!.layoutAttributesForItemAtIndexPath(indexPath)
-            let areaRect = self.collectionView!.convertRect(layoutAttributes!.frame, toView: self.collectionView!.superview)
-            let toVC = ......
-            toVC.coverRectInSuperview = areaRect
             ...
         }
         

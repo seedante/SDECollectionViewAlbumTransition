@@ -214,7 +214,6 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
         self.selectedIndexPath = indexPath
 
         let layoutAttributes = self.collectionView!.layoutAttributesForItemAtIndexPath(indexPath)
-        let areaRect = self.collectionView!.convertRect(layoutAttributes!.frame, toView: self.collectionView!.superview)
 
         let circleView = UIView(frame: CGRectMake(0, 0, 30.0, 30.0))
         circleView.layer.cornerRadius = 15.0
@@ -232,7 +231,6 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
                 if let albumVC = self.storyboard?.instantiateViewControllerWithIdentifier("AlbumVC") as? SDEAlbumViewController{
                     let assetCollection = self.dataSource[indexPath.section][indexPath.row]
                     albumVC.assetCollection = assetCollection
-                    albumVC.areaRectInSuperview = areaRect
                     self.navigationController?.pushViewController(albumVC, animated: true)
                 }
         })

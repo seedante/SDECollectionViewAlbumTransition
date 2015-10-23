@@ -160,20 +160,17 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
             let columns = verticalCount
 
             let relativeStartTime = (self.kCellAnimationBigDelta * Double(indexPath.row % columns))
-            var relativeDuration = 0.5 - (self.kCellAnimationSmallDelta * Double(indexPath.row))
-            if (relativeStartTime + relativeDuration) > 0.5 {
-                relativeDuration = 0.5 - relativeStartTime
-            }
+            let relativeDuration = 0.5 - (self.kCellAnimationSmallDelta * Double(indexPath.row))
 
             UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0.7, animations: {
                 cell.alpha = 1
             })
 
-            UIView.addKeyframeWithRelativeStartTime(0.5 + relativeStartTime, relativeDuration: 0.3, animations: {
+            UIView.addKeyframeWithRelativeStartTime(0.5 + relativeStartTime, relativeDuration: relativeDuration, animations: {
                 cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1)
             })
 
-            UIView.addKeyframeWithRelativeStartTime(0.5 + relativeStartTime, relativeDuration: 0.3, animations: {
+            UIView.addKeyframeWithRelativeStartTime(0.5 + relativeStartTime, relativeDuration: relativeDuration, animations: {
                 cell.center = layoutAttributes!.center
             })
 
@@ -271,10 +268,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
                 let heightScale = cellHeight / cell.frame.height
 
                 let relativeStartTime = (self.kCellAnimationBigDelta * Double(relativeRow % verticalCount))
-                var relativeDuration = 0.5 - (self.kCellAnimationSmallDelta * Double(relativeRow))
-                if (relativeStartTime + relativeDuration) > 0.5 {
-                    relativeDuration = 0.5 - relativeStartTime
-                }
+                let relativeDuration = 0.5 - (self.kCellAnimationSmallDelta * Double(relativeRow))
 
                 UIView.addKeyframeWithRelativeStartTime(relativeStartTime, relativeDuration: relativeDuration, animations: {
                     cell.center = CGPoint(x: centerX, y: centerY)

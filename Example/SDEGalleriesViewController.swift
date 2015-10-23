@@ -257,14 +257,11 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
                     return
                 }
 
-                self.selectedIndexPath = indexPath
-                let layoutAttributes = collectionView!.layoutAttributesForItemAtIndexPath(indexPath)
-                let areaRect = collectionView!.convertRect(layoutAttributes!.frame, toView: collectionView?.superview)
+                self.selectedIndexPath = indexPath                
 
                 if let toVC = storyboard?.instantiateViewControllerWithIdentifier("AlbumVC") as? SDEAlbumViewController{
                     let assetCollection = dataSource[indexPath.section][indexPath.row]
                     toVC.assetCollection = assetCollection
-                    toVC.coverRectInSuperview = areaRect
 
                     transitionDelegate = navigationController?.delegate as? SDENavigationControllerDelegate
                     transitionDelegate?.interactive = true

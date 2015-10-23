@@ -49,7 +49,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
 
             let layoutAttributes = fromVC!.collectionView?.layoutAttributesForItemAtIndexPath(fromVC!.selectedIndexPath)
             let areaRect = fromVC!.collectionView?.convertRect(layoutAttributes!.frame, toView: fromVC!.collectionView?.superview)
-            toVC!.areaRectInSuperview = areaRect!
+            toVC!.coverRectInSuperview = areaRect!
 
             //key code, the most important code here. without this line, you can't get visibleCells from UICollectionView.
             //And, there are other ways, Just make view redraw.
@@ -113,7 +113,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
         coverContainerView.tag = 1000
 
         toVC.view.addSubview(coverContainerView)
-        coverContainerView.frame = toVC.areaRectInSuperview
+        coverContainerView.frame = toVC.coverRectInSuperview
 
         let frame = coverContainerView.frame
         coverContainerView.layer.anchorPoint = CGPointMake(0, 0.5)
@@ -187,7 +187,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
     private func setupVisibleCellsBeforePushToVC(toVC:UICollectionViewController){
         if toVC.collectionView?.visibleCells().count > 0{
 
-            let areaRect = toVC.collectionView!.convertRect(toVC.areaRectInSuperview, fromView: toVC.collectionView!.superview)
+            let areaRect = toVC.collectionView!.convertRect(toVC.coverRectInSuperview, fromView: toVC.collectionView!.superview)
             let cellsAreaRect = UIEdgeInsetsInsetRect(areaRect, coverEdgeInSets)
 
             let cellWidth = (cellsAreaRect.width - CGFloat(horizontalCount - 1) * horizontalGap) / CGFloat(horizontalCount)
@@ -249,7 +249,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
             let minimalRow = rows.reduce(Int.max, combine: { $0 < $1 ? $0 : $1 })
 
             let collectionView = fromVC.collectionView!
-            let areaRect = collectionView.convertRect(fromVC.areaRectInSuperview, fromView: fromVC.collectionView!.superview)
+            let areaRect = collectionView.convertRect(fromVC.coverRectInSuperview, fromView: fromVC.collectionView!.superview)
             let cellsAreaRect = UIEdgeInsetsInsetRect(areaRect, coverEdgeInSets)
 
             let cellWidth = (cellsAreaRect.width - CGFloat(horizontalCount - 1) * horizontalGap) / CGFloat(horizontalCount)

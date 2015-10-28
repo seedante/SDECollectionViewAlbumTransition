@@ -13,7 +13,7 @@ Drag files in "Classes" folder into your project.
 ## Usage 使用方法
 
 - In your storyboard, drag a Object to your navigation controller, and set its custom class to "SDENavigationControllerDelegate"
-- 在你的 storyboard 里，拖一个 Object 到你的 navigation controller 上面，并将这个 Object 的类设置为「SDENavigationControllerDelegate」
+- 在你的 storyboard 里，拖一个 Object 到你的 navigation controller 上面，并将这个 Object 的类设置为「SDENavigationControllerDelegate」。
 
 ![drag an Object and set the custom class](https://raw.githubusercontent.com/seedante/SDECollectionViewAlbumTransition/PinchPopTransition/Config1.png)
 
@@ -49,7 +49,7 @@ There is a little problem with time delta algorithm, I will update if I find the
 
 Pinching to push is a little complex. ViewController to push must be created before push, and init a ViewController is complex than do something to a existed ViewController, so this is why most of libraries do not support pinch to push. 
 
-使用 pinch 手势来支持 push 操作有点麻烦.在 push 一个视图控制器前必然要生成一个实例，但这个类别是未知的，需要你来决定，这就是为什么很多库只支持 pinch push 的原因，pop 前视图控制器已经存在了，就不存在这个困扰。
+使用 pinch 手势来支持 push 操作有点麻烦。在 push 一个视图控制器前必然要生成一个实例，但这个类别是未知的，需要你来决定，这就是为什么很多库只支持 pinch push 的原因，pop 前视图控制器已经存在了，就不存在这个困扰。
 
 If you want to use pinch to support push and pop both, switch to the branch "Pinch-Push-Pop-Transition", drag files in "Classes" folder in this branch into your project, 
 there is a little difference between "Pinch-Push-Pop-Transition" branch with other branches.

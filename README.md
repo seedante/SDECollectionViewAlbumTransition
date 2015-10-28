@@ -7,6 +7,7 @@ UICollectionViewController Transition like open and close an album. Blog for thi
 ## Installtion 添加到你的工程
 
 Drag files in "Classes" folder into your project.
+
 将 Classes 里的文件拖到你的工程中即可。
 
 ## Usage 使用方法
@@ -31,6 +32,7 @@ Drag files in "Classes" folder into your project.
         }
         
 **Now the collectionView supports to pinch to pop.**
+
 **现在当前的这个 collectionView 已经支持使用 pinch 手势来执行 pop 了。**
 
 
@@ -46,13 +48,16 @@ There is a little problem with time delta algorithm, I will update if I find the
 ## Pinch to push? 使用 Pinch 手势支持 push？
 
 Pinching to push is a little complex. ViewController to push must be created before push, and init a ViewController is complex than do something to a existed ViewController, so this is why most of libraries do not support pinch to push. 
+
 使用 pinch 手势来支持 push 操作有点麻烦.在 push 一个视图控制器前必然要生成一个实例，但这个类别是未知的，需要你来决定，这就是为什么很多库只支持 pinch push 的原因，pop 前视图控制器已经存在了，就不存在这个困扰。
 
 If you want to use pinch to support push and pop both, switch to the branch "Pinch-Push-Pop-Transition", drag files in "Classes" folder in this branch into your project, 
 there is a little difference between "Pinch-Push-Pop-Transition" branch with other branches.
+
 如果你想使用 pinch 手势同时支持 push 和 pop 操作，那么当前的分支的模式就不能用了，请切换到「Pinch-Push-Pop-Transition」分支。同样地，将 Classes 文件夹里的文件拖到你的工程里。
 
 Add the below properties to your UICollectionViewController child class:
+
 在你的 UICollectionViewController 子类添加以下属性和方法：
 
     var transitionDelegate: SDENavigationControllerDelegate?

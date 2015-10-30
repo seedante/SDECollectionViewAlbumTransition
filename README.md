@@ -23,12 +23,15 @@ Drag files in "Classes" folder into your project.
 ![set the delegate](https://raw.githubusercontent.com/seedante/SDECollectionViewAlbumTransition/PinchPopTransition/Config2.png)
 
 
-- At the last, add one line code in your UICollectionView's delegate:
-- 最后要做的一件事是，在下面的方法中添加一行代码：
+- At the last, add the follow codes in your UICollectionView's delegate:
+- 最后要做的一件事是，在下面的方法中添加几行行代码：
 
         override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
             self.selectedIndexPath = indexPath
+            self.collectionView?.allowsSelection = false //disable interaction to prevent the issue of double tap on cell
             ...
+            self.navigationController?.pushViewController(toVC, animated: true)
+            self.collectionView?.allowsSelection = true //enable again after push.
         }
         
 **Now the collectionView supports to pinch to pop.**

@@ -212,6 +212,7 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
     //MARK: UICollectionView Delegate
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.selectedIndexPath = indexPath
+        self.collectionView?.allowsSelection = false
 
         let layoutAttributes = self.collectionView!.layoutAttributesForItemAtIndexPath(indexPath)
 
@@ -232,6 +233,7 @@ class SDEGalleriesViewController: UICollectionViewController, PHPhotoLibraryChan
                     let assetCollection = self.dataSource[indexPath.section][indexPath.row]
                     albumVC.assetCollection = assetCollection
                     self.navigationController?.pushViewController(albumVC, animated: true)
+                    self.collectionView?.allowsSelection = true
                 }
         })
     }

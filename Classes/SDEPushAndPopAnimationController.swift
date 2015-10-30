@@ -60,7 +60,7 @@ internal class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnima
             let selectedCell = fromVC.collectionView?.cellForItemAtIndexPath(selectedIndexPath)
             selectedCell?.hidden = true
 
-            let layoutAttributes = fromVC.collectionView!.layoutAttributesForItemAtIndexPath(fromVC.selectedIndexPath!)
+            let layoutAttributes = fromVC.collectionView!.layoutAttributesForItemAtIndexPath(selectedIndexPath)
             let areaRect = fromVC.collectionView!.convertRect(layoutAttributes!.frame, toView: fromVC.collectionView!.superview)
             toVC.coverRectInSuperview = areaRect
 

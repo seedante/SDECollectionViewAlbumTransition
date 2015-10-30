@@ -11,7 +11,7 @@ import UIKit
 import ObjectiveC
 
 private var selectedIndexPathAssociationKey: UInt8 = 0
-private var areaRectInSuperviewKey: UInt8 = 1
+private var coverRectInSuperviewKey: UInt8 = 1
 
 extension UICollectionViewController {
     
@@ -26,14 +26,14 @@ extension UICollectionViewController {
 
     var coverRectInSuperview: CGRect! {
         get {
-            let value = objc_getAssociatedObject(self, &areaRectInSuperviewKey) as? NSValue
+            let value = objc_getAssociatedObject(self, &coverRectInSuperviewKey) as? NSValue
             return value?.CGRectValue()
         }
 
         set(newValue){
             if newValue != nil{
                 let value = NSValue(CGRect: newValue)
-                objc_setAssociatedObject(self, &areaRectInSuperviewKey, value, .OBJC_ASSOCIATION_RETAIN)
+                objc_setAssociatedObject(self, &coverRectInSuperviewKey, value, .OBJC_ASSOCIATION_RETAIN)
             }
         }
     }

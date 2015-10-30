@@ -23,16 +23,18 @@ extension UICollectionViewController {
             objc_setAssociatedObject(self, &selectedIndexPathAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
-    
-    var areaRectInSuperview: CGRect! {
+
+    var coverRectInSuperview: CGRect! {
         get {
             let value = objc_getAssociatedObject(self, &areaRectInSuperviewKey) as? NSValue
             return value?.CGRectValue()
         }
 
         set(newValue){
-            let value = NSValue(CGRect: newValue)
-            objc_setAssociatedObject(self, &areaRectInSuperviewKey, value, .OBJC_ASSOCIATION_RETAIN)
+            if newValue != nil{
+                let value = NSValue(CGRect: newValue)
+                objc_setAssociatedObject(self, &areaRectInSuperviewKey, value, .OBJC_ASSOCIATION_RETAIN)
+            }
         }
     }
     

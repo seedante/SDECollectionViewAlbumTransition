@@ -37,36 +37,48 @@ internal class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnima
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
 
         let containerView = transitionContext.containerView()
-        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? UICollectionViewController
-        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? UICollectionViewController
         let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)
         let toView = transitionContext.viewForKey(UITransitionContextToViewKey)
+
+        guard   let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? UICollectionViewController,
+                let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? UICollectionViewController
+        else{
+            containerView?.addSubview(toView!)
+            transitionContext.completeTransition(true)
+            return
+        }
         let duration = transitionDuration(transitionContext)
 
         switch operation{
         case .Push:
-            let selectedCell = fromVC?.collectionView?.cellForItemAtIndexPath(fromVC!.selectedIndexPath)
+            guard let selectedIndexPath = fromVC.selectedIndexPath else{
+                containerView?.addSubview(toView!)
+                transitionContext.completeTransition(true)
+                return
+            }
+
+            let selectedCell = fromVC.collectionView?.cellForItemAtIndexPath(selectedIndexPath)
             selectedCell?.hidden = true
 
-            let layoutAttributes = fromVC!.collectionView?.layoutAttributesForItemAtIndexPath(fromVC!.selectedIndexPath)
-            let areaRect = fromVC!.collectionView?.convertRect(layoutAttributes!.frame, toView: fromVC!.collectionView?.superview)
-            toVC!.areaRectInSuperview = areaRect!
+            let layoutAttributes = fromVC.collectionView!.layoutAttributesForItemAtIndexPath(fromVC.selectedIndexPath!)
+            let areaRect = fromVC.collectionView!.convertRect(layoutAttributes!.frame, toView: fromVC.collectionView!.superview)
+            toVC.coverRectInSuperview = areaRect
 
-            let fakeCoverView = createAndSetupFakeCoverView(fromVC!, toVC: toVC!)
+            let fakeCoverView = createAndSetupFakeCoverView(fromVC, toVC: toVC)
 
             //key code, the most important code here. without this line, you can't get visibleCells from UICollectionView.
             //And, there are other ways, Just make view redraw.
-            toVC?.view.layoutIfNeeded()
-            setupVisibleCellsBeforePushToVC(toVC!)
+            toVC.view.layoutIfNeeded()
+            setupVisibleCellsBeforePushToVC(toVC)
             containerView?.addSubview(toView!)
 
             UIView.setAnimationCurve(UIViewAnimationCurve.EaseOut)
             let options: UIViewKeyframeAnimationOptions = [.BeginFromCurrentState, .OverrideInheritedDuration, .CalculationModeCubic, .CalculationModeLinear]
             UIView.animateKeyframesWithDuration(duration, delay: 0, options: options, animations: {
 
-                self.addkeyFrameAnimationForBackgroundColorInPush(fromVC!, toVC: toVC!)
+                self.addkeyFrameAnimationForBackgroundColorInPush(fromVC, toVC: toVC)
                 self.addKeyFrameAnimationInPushForFakeCoverView(fakeCoverView)
-                self.addKeyFrameAnimationOnVisibleCellsInPushToVC(toVC!)
+                self.addKeyFrameAnimationOnVisibleCellsInPushToVC(toVC)
 
                 }, completion: { finished in
 
@@ -84,15 +96,15 @@ internal class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnima
             let coverView = fromView?.viewWithTag(1000)
             UIView.setAnimationCurve(UIViewAnimationCurve.EaseInOut)
             UIView.animateKeyframesWithDuration(duration, delay: 0, options: UIViewKeyframeAnimationOptions(), animations: {
-                self.addkeyFrameAnimationForBackgroundColorInPop(fromVC!)
+                self.addkeyFrameAnimationForBackgroundColorInPop(fromVC)
                 self.addKeyFrameAnimationInPopForFakeCoverView(coverView)
-                self.addKeyFrameAnimationOnVisibleCellsInPopFromVC(fromVC!)
+                self.addKeyFrameAnimationOnVisibleCellsInPopFromVC(fromVC)
 
                 }, completion: { finished in
 
                     let isCancelled = transitionContext.transitionWasCancelled()
-                    if !isCancelled{
-                        let selectedCell = toVC?.collectionView?.cellForItemAtIndexPath(toVC!.selectedIndexPath)
+                    if !isCancelled && toVC.selectedIndexPath != nil{
+                        let selectedCell = toVC.collectionView?.cellForItemAtIndexPath(toVC.selectedIndexPath!)
                         selectedCell?.hidden = false
                     }
                     transitionContext.completeTransition(!isCancelled)
@@ -105,7 +117,10 @@ internal class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnima
 
     //MARK: Push Transition Helper Method
     private func createAndSetupFakeCoverView(fromVC: UICollectionViewController, toVC: UICollectionViewController) -> UIView?{
-        guard let selectedCell = fromVC.collectionView?.cellForItemAtIndexPath(fromVC.selectedIndexPath) else{
+        guard   let selectedIndexPath = fromVC.selectedIndexPath,
+                let selectedCell = fromVC.collectionView?.cellForItemAtIndexPath(selectedIndexPath),
+                let coverRect = toVC.coverRectInSuperview
+        else{
             return nil
         }
 
@@ -118,7 +133,7 @@ internal class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnima
         coverContainerView.tag = 1000
 
         toVC.view.addSubview(coverContainerView)
-        coverContainerView.frame = toVC.areaRectInSuperview
+        coverContainerView.frame = coverRect
 
         let frame = coverContainerView.frame
         coverContainerView.layer.anchorPoint = CGPointMake(0, 0.5)
@@ -128,23 +143,24 @@ internal class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnima
     }
 
     private func addKeyFrameAnimationInPushForFakeCoverView(coverView: UIView?){
-        UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0.5, animations: {
-            var flipLeftTransform = CATransform3DIdentity
-            flipLeftTransform.m34 = -1.0 / 500.0
-            flipLeftTransform = CATransform3DRotate(flipLeftTransform, CGFloat(-M_PI), 0.0, 1.0, 0.0)
-            coverView?.layer.transform = flipLeftTransform
-        })
+        if coverView != nil{
+            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0.5, animations: {
+                var flipLeftTransform = CATransform3DIdentity
+                flipLeftTransform.m34 = -1.0 / 500.0
+                flipLeftTransform = CATransform3DRotate(flipLeftTransform, CGFloat(-M_PI), 0.0, 1.0, 0.0)
+                coverView?.layer.transform = flipLeftTransform
+            })
 
-        UIView.addKeyframeWithRelativeStartTime(0.45, relativeDuration: 0.05, animations: {
-            coverView?.alpha = 0
-        })
+            UIView.addKeyframeWithRelativeStartTime(0.45, relativeDuration: 0.05, animations: {
+                coverView?.alpha = 0
+            })
 
-        //fix Transparent Background In Flip Animation
-        let snapshotView = coverView?.viewWithTag(10)
-        UIView.addKeyframeWithRelativeStartTime(0.25, relativeDuration: 0.01, animations: {
-            snapshotView?.alpha = 0
-        })
-
+            //fix Transparent Background In Flip Animation
+            let snapshotView = coverView?.viewWithTag(10)
+            UIView.addKeyframeWithRelativeStartTime(0.25, relativeDuration: 0.01, animations: {
+                snapshotView?.alpha = 0
+            })
+        }
     }
 
     private func addkeyFrameAnimationForBackgroundColorInPush(fromVC: UICollectionViewController, toVC: UICollectionViewController){
@@ -193,7 +209,7 @@ internal class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnima
     private func setupVisibleCellsBeforePushToVC(toVC:UICollectionViewController){
         if toVC.collectionView?.visibleCells().count > 0{
 
-            let areaRect = toVC.collectionView!.convertRect(toVC.areaRectInSuperview, fromView: toVC.collectionView!.superview)
+            let areaRect = toVC.collectionView!.convertRect(toVC.coverRectInSuperview!, fromView: toVC.collectionView!.superview)
             let cellsAreaRect = UIEdgeInsetsInsetRect(areaRect, coverEdgeInSets)
 
             let cellWidth = (cellsAreaRect.width - CGFloat(horizontalCount - 1) * horizontalGap) / CGFloat(horizontalCount)
@@ -255,7 +271,7 @@ internal class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnima
             let minimalRow = rows.reduce(Int.max, combine: { $0 < $1 ? $0 : $1 })
 
             let collectionView = fromVC.collectionView!
-            let areaRect = collectionView.convertRect(fromVC.areaRectInSuperview, fromView: fromVC.collectionView!.superview)
+            let areaRect = collectionView.convertRect(fromVC.coverRectInSuperview!, fromView: fromVC.collectionView!.superview)
             let cellsAreaRect = UIEdgeInsetsInsetRect(areaRect, coverEdgeInSets)
 
             let cellWidth = (cellsAreaRect.width - CGFloat(horizontalCount - 1) * horizontalGap) / CGFloat(horizontalCount)

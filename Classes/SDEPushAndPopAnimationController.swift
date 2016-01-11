@@ -17,7 +17,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
     var horizontalGap: CGFloat = 0
     var verticalGap: CGFloat = 0
 
-    private let kAnimationDuration: Double = 1.0
+    private let kAnimationDuration: Double = 0.8
     private let kCellAnimationSmallDelta: Double = 0.01
     private let kCellAnimationBigDelta: Double = 0.03
 
@@ -60,7 +60,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
             let fakeCoverView = createAndSetupFakeCoverView(fromVC!, toVC: toVC!)
 
             UIView.setAnimationCurve(UIViewAnimationCurve.EaseOut)
-            let options: UIViewKeyframeAnimationOptions = [.BeginFromCurrentState, .OverrideInheritedDuration, .CalculationModeCubic, .CalculationModeLinear]
+            let options: UIViewKeyframeAnimationOptions = [.BeginFromCurrentState, .OverrideInheritedDuration, .CalculationModeCubic, .CalculationModeCubicPaced]
             UIView.animateKeyframesWithDuration(duration, delay: 0, options: options, animations: {
 
                 self.addkeyFrameAnimationForBackgroundColorInPush(fromVC!, toVC: toVC!)
@@ -96,8 +96,7 @@ class SDEPushAndPopAnimationController: NSObject, UIViewControllerAnimatedTransi
                     transitionContext.completeTransition(!isCancelled)
             })
 
-        default:
-            print("No Operation")
+        default:break
         }
     }
 

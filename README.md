@@ -1,7 +1,7 @@
 # SDECollectionViewAlbumTransition
 UICollectionViewController Transition like open and close an album. Blog for this: [Part I](http://www.jianshu.com/p/7a35ee30e90c), [Part II](http://www.jianshu.com/p/2cdf0729934f)
 
-![AlbumTransition](https://raw.githubusercontent.com/seedante/SDECollectionViewAlbumTransition/PinchPopTransition/AlbumTransition.gif)
+![AlbumTransition](https://github.com/seedante/SDECollectionViewAlbumTransition/blob/PinchPopTransition/Figures/AlbumTransition.gif)
 
 
 ## Installtion 添加到你的工程

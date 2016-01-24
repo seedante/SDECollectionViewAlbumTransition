@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD62436B1C5578A5006FFBCF /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = FD62436A1C5578A5006FFBCF /* Base.lproj */; };
 		FD83B6221BD529C100C4326E /* SDEPopPinchInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD83B6211BD529C100C4326E /* SDEPopPinchInteractionController.swift */; };
 		FDB179B41BD00B610029A9AB /* UICollectionViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB179B01BD00B610029A9AB /* UICollectionViewControllerExtension.swift */; };
 		FDBB4B4F1B5BDFBE00B6D674 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB4B4E1B5BDFBE00B6D674 /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD62436A1C5578A5006FFBCF /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Base.lproj; sourceTree = "<group>"; };
 		FD83B6211BD529C100C4326E /* SDEPopPinchInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDEPopPinchInteractionController.swift; sourceTree = "<group>"; };
 		FDB179B01BD00B610029A9AB /* UICollectionViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UICollectionViewControllerExtension.swift; path = Extension/UICollectionViewControllerExtension.swift; sourceTree = "<group>"; };
 		FDBB4B4B1B5BDFBE00B6D674 /* SDECollectionViewAlbumTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDECollectionViewAlbumTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +77,7 @@
 		FDBB4B4D1B5BDFBE00B6D674 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				FD62436A1C5578A5006FFBCF /* Base.lproj */,
 				FDBB4B651B5BE02400B6D674 /* NSTimeIntervalOutputExtension.swift */,
 				FDE437531BCF9703001A6BF8 /* PHFetchResultExtension.swift */,
 				FDBB4B4E1B5BDFBE00B6D674 /* AppDelegate.swift */,
@@ -174,6 +177,7 @@
 				FDBB4B711B5BE08800B6D674 /* Main.storyboard in Resources */,
 				FDBB4B6F1B5BE02400B6D674 /* video_call@2x.png in Resources */,
 				FDBB4B6E1B5BE02400B6D674 /* video_call.png in Resources */,
+				FD62436B1C5578A5006FFBCF /* Base.lproj in Resources */,
 				FDBB4B731B5BE20800B6D674 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

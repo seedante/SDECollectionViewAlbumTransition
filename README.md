@@ -15,12 +15,12 @@ Drag files in "Classes" folder into your project.
 - In your storyboard, drag a Object to your navigation controller, and set its custom class to "SDENavigationControllerDelegate"
 - 在你的 storyboard 里，拖一个 Object 到你的 navigation controller 上面，并将这个 Object 的类设置为「SDENavigationControllerDelegate」。
 
-![drag an Object and set the custom class](https://raw.githubusercontent.com/seedante/SDECollectionViewAlbumTransition/PinchPopTransition/Config1.png)
+![drag an Object and set the custom class](https://github.com/seedante/SDECollectionViewAlbumTransition/blob/PinchPopTransition/Figures/Config1.png)
 
 - Set this object to be your navigation controller's delegate.
 - 将这个 Object 设置为 navigation controller 的 delegate。
 
-![set the delegate](https://raw.githubusercontent.com/seedante/SDECollectionViewAlbumTransition/PinchPopTransition/Config2.png)
+![set the delegate](https://github.com/seedante/SDECollectionViewAlbumTransition/blob/PinchPopTransition/Figures/Config2.png)
 
 
 - At the last, add the follow codes in your UICollectionView's delegate:
